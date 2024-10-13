@@ -16,6 +16,7 @@ import { Findme } from "../Utils/Findme";
 import { accumulativeContext } from "@react-three/drei";
 import { useAtom } from "jotai";
 import { socket } from "../Socketmanager";
+import { mintfunc } from "../Component/AptosFunctions";
 
 const ConnectAptos = () => {
   const [me, setme] = useAtom(Findme);
@@ -93,7 +94,51 @@ setcoins(accountResource.coins.val)
     }
   };
 
+  const burn1 = async () => {
+    if (!account) return;
+    const transaction = {
+      data: {
+        function: `${moduleAddress}::BasicCoins::burn`,
+        functionArguments: ["1"],
+      },
+    };
 
+    try {
+      const response = await signAndSubmitTransaction(transaction);
+
+      await aptos.waitForTransaction({ transactionHash: response.hash });
+
+      console.log("Minting successful");
+    } catch (error) {
+      console.error("Minting failed:", error);
+    }
+  };
+  const Transfer = async () => {
+    if (!account || !account.address) {
+      console.error("Account is not defined or missing address.");
+      return null;
+    }
+    if (!account) return [];
+  const transaction = {
+    data: {
+      function: `${moduleAddress}::BasicCoins::transfer`,
+      functionArguments: [
+      "0x2a2f75fadf5ab3bbbe9baffc87f0f6be11aece54350ac85abb68ade94404dc89",
+      1
+      ],
+    },
+  };
+  try {
+    // sign and submit transaction to chain
+    const response = await signAndSubmitTransaction(transaction);
+    // wait for transaction
+    await aptos.waitForTransaction({ transactionHash: response.hash });
+    setAccountHasList(true);
+  } catch (error) {
+    setAccountHasList(false);
+  } finally {
+  }
+  }
   const mint1 = async () => {
     if (!account) return;
 
@@ -128,10 +173,9 @@ setcoins(accountResource.coins.val)
     
     if(account){
       getBalancePerson();
-
     }
-  },[account])
-  
+  },[account.address])
+  const handleMint = () => mintfunc(account, signAndSubmitTransaction);
   return (
     <div className="w-full scale-50 flex-col items-center justify-center  bg-green-100/40 absolute z-50 ">
       <WalletSelector />
@@ -143,10 +187,22 @@ setcoins(accountResource.coins.val)
         {account != null && account.address}
       </div>
       <button
-        onClick={mint1}
+        onClick={handleMint}
         className="bg-blue-500 absolute right-6 -top-2 hover:bg-blue-700  text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
       >
         Mint
+      </button>
+      <button
+        onClick={burn1}
+        className="bg-blue-500 absolute right-20 top-24 hover:bg-blue-700  text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
+      >
+        Burn
+      </button>
+      <button 
+      onClick={Transfer}
+        className="bg-blue-500 absolute right-14 top-10 hover:bg-blue-700  text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
+        >
+        Transfer
       </button>
       <div className=' absolute text-lg   -right-[5rem] -top-1  text-[15px]' >  {coins} 🪙</div>
 

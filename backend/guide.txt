@@ -1,0 +1,320 @@
+USER
+base url:https://your-api-url.com/api/v1/user
+
+1.
+Endpoint: /signup
+Method: POST
+Description: Creates a new user account.
+Body:
+{
+  "username": "user@example.com",
+  "firstName": "First",
+  "lastName": "Last",
+  "password": "your_password"
+}
+Response:
+{
+  "message": "User created successfully",
+  "token": "jwt_token"
+}
+
+2.
+Endpoint: /signin
+Method: POST
+Description: Authenticates a user and returns a JWT token.
+Body:
+{
+  "username": "user@example.com",
+  "password": "your_password"
+}
+Response:
+{
+  "token": "jwt_token"
+}
+
+3.
+Endpoint: /authorize
+Method: POST
+Description: Checks if the provided JWT token is valid.
+Headers:
+Authorization: Bearer <token>
+
+Response:
+{
+  "message": "You are authorised"
+}
+
+4.
+Endpoint: /
+Method: PUT
+Description: Updates user information such as password, first name, or last name
+Body:
+{
+  "password": "new_password",
+  "firstName": "NewFirst",
+  "lastName": "NewLast"
+}
+
+5.
+
+Endpoint: /upload
+Method: POST
+Description: Uploads a file to the server.
+
+Body:
+{
+  "path": "local/path/to/file.pdf"
+}
+
+6.
+Endpoint: /askai
+Method: GET
+Description: Interacts with an AI service using a specified file.
+Responses:
+{
+  "message": "ai responded!",
+  "data": "AI response data"
+}
+
+STUDENT
+
+base url:https://your-api-url.com/api/v1/student
+
+1.
+Endpoint: /
+Method: POST
+Description: Creates a new student record.
+Request Body:
+{
+  "studentId": "12345",
+  "assignmentIds": ["assignment1", "assignment2"]
+}
+
+Response:
+{
+  "message": "Student created successfully.",
+  "student": {
+    "studentId": "12345",
+    "Assignments": ["assignment1", "assignment2"]
+  }
+}
+
+2.
+Endpoint: /single/:studentId
+Method: GET
+Description: Retrieves a student by their student ID.
+Path Parameters:
+studentId: The ID of the student to retrieve.
+Response:
+{
+  "studentId": "12345",
+  "Assignments": ["assignment1", "assignment2"]
+}
+
+3.
+Endpoint: /getall
+Method: GET
+Description: Retrieves a list of all students.
+
+Responses:
+[
+  {
+    "studentId": "12345",
+    "Assignments": ["assignment1", "assignment2"]
+  },
+  {
+    "studentId": "67890",
+    "Assignments": []
+  }
+]
+
+4.
+Endpoint: /add/assignments
+Method: PUT
+Description: Adds an assignment ID to multiple students.
+Request Body:
+{
+  "studentIds": ["12345", "67890"],
+  "assignmentId": "assignment3"
+}
+Response:
+{
+  "message": "Assignments added successfully.",
+  "modifiedCount": 2
+}
+
+TEACHER
+
+base url:https://your-api-url.com/api/v1/teacher
+
+1.
+Endpoint: /
+Method: POST
+Description: Creates a new teacher record.
+Request Body:
+{
+  "userId": "user123",
+  "materialUrls": ["http://example.com/material1", "http://example.com/material2"],
+  "assignmentIds": ["assignment1", "assignment2"]
+}
+
+2.
+Endpoint: /:teacherId
+Method: GET
+Description: Retrieves a teacher by their Teacher ID.
+Path Parameters:
+teacherId: The ID of the teacher to retrieve.
+
+
+3.
+Endpoint: /:teacherId/materials
+Method: PUT
+Description: Adds new material URLs to a teacher's record.
+Path Parameters:
+teacherId: The ID of the teacher to update.
+{
+  "materialUrls": ["http://example.com/new_material1", "http://example.com/new_material2"]
+}
+
+ASSIGNMENT
+
+base url:
+https://your-api-url.com/api/v1/assignment
+
+1.Endpoint: /upload
+Method: POST
+Description: Creates a new assignment record and associates it with a teacher.
+Body:
+{
+  "teacherId": "teacher123",
+  "questionMaterials": ["http://example.com/question1", "http://example.com/question2"],
+  "description": "This is a sample assignment.",
+  "deadline": "2024-08-20T23:59:59Z"
+}
+
+Responses:
+{
+  "message": "Assignment created successfully.",
+  "assignment": {
+    "TeacherId": "teacher123",
+    "Question_material": ["http://example.com/question1", "http://example.com/question2"],
+    "Description": "This is a sample assignment.",
+    "Deadline": "2024-08-20T23:59:59Z",
+    "_id": "assignment123"
+  }
+}
+
+Assignment Submissions
+base url:
+https://your-api-url.com/api/v1/submission
+
+1.
+Endpoint: /
+Method: POST
+Description: Submits an assignment for a student.
+Request Body:
+{
+  "studentId": "student123",
+  "answerMaterial": ["http://example.com/answer1"],
+  "assignmentId": "assignment123",
+  "status": "Submitted",
+  "points": 10
+}
+
+2.
+Endpoint: /assignment/:assignmentId
+Method: GET
+Description: Retrieves all submissions for a specified assignment.
+Path Parameters:
+assignmentId: The ID of the assignment.
+
+3.
+Endpoint: /assignment/:assignmentId/status/:status
+Method: GET
+Description: Retrieves submissions for a specified assignment filtered by status.
+Path Parameters:
+assignmentId: The ID of the assignment.
+status: The status of the submissions to filter by.
+
+4.
+Endpoint: /student/:studentId
+Method: GET
+Description: Retrieves all submissions for a specified student.
+Path Parameters:
+studentId: The ID of the student.
+
+5.
+Endpoint: /:submissionId
+Method: PUT
+Description: Updates an existing assignment submission.
+Path Parameters:
+submissionId: The ID of the submission to update.
+Request Body:
+{
+  "answerMaterial": ["http://example.com/updated_answer"],
+  "status": "Graded",
+  "points": 15
+}
+
+ACCOUNT
+base url:
+https://your-api-url.com/api/v1/account
+
+1.Endpoint: /balance
+Method: GET
+Description: Retrieves the balance of the authenticated user's account.
+Headers:
+Authorization: Bearer token for authentication
+Response:
+{
+  "balance": 1000
+}
+
+Endpoint: /transfer
+Method: POST
+Description: Transfers a specified amount from the authenticated user's account to another user's account.
+Headers:
+Authorization: Bearer token for authentication.
+
+Body:
+{
+  "amount": 100,
+  "to": "recipientUserId"
+}
+
+
+ATTENDANCE
+base url:https://your-api-url.com/api/v1/attendance
+1.
+POST /
+Description:
+Records attendance for a specific date, teacher, and a list of students.
+Request Body:
+{
+  "date": "2024-08-14",          // Date of the attendance (format: YYYY-MM-DD)
+  "teacherId": "64d9f0f7e9fef00b32e65f3c",  // ID of the teacher recording the attendance
+  "studentIds": [                // Array of student IDs present
+    "64d9f101e9fef00b32e65f3d", 
+    "64d9f103e9fef00b32e65f3e"
+  ]
+}
+
+2. GET /teacher/:teacherId
+Description:
+Fetches all attendance records associated with a specific teacher.
+
+
+3.GET /date/:teacherId/:date
+Description:
+Fetches attendance records for a specific teacher on a specific date.
+
+4. GET /student/:studentId
+Description:
+Finds how many days a particular student was present based on attendance records.
+
+
+
+
+
+
+

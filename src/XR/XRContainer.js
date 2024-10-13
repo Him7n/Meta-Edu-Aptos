@@ -6,10 +6,14 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useAtom } from 'jotai';
 import { PlayerXP } from '../Utils/PlayerXP';
 import { useBuyItem } from '../Component/useBuyItem';  // Import the hook
+import { useWallet } from "@aptos-labs/wallet-adapter-react";
 
 import "./Xr.css"; // Assuming you have other styles here
+import { burn1, getBalancePerson } from '../Component/AptosFunctions';
 
 export default function XrContainer(props) {
+    const { account, signAndSubmitTransaction } = useWallet();
+
     const [xp, setXP] = useAtom(PlayerXP);
     const [showDetails, setShowDetails] = useState(false);
     const [orderMessage, setOrderMessage] = useState('');
@@ -23,24 +27,47 @@ export default function XrContainer(props) {
         setOrderMessage(''); // Clear message when closing the details
         setOrderPlaced(false); // Reset the order placed state
     };
-
-    // Function to handle the Buy button click and show toast
     const handleBuyClick = async (currency) => {
         const loadingToast = toast.loading('Please wait...');
-
-        const result = await buyItem();  // Use the buyItem function
-        toast.dismiss(loadingToast); // Dismiss the loading toast
-
-        if (result) {
-            setOrderMessage('Order Placed Successfully!');
-            setOrderPlaced(true);
-            toast.success('Order Placed');
-            setXP(xp + 1);
-            toast.success('Leveled UP!');
-        } else {
+    
+        try {
+            // Assuming you have access to the account and signAndSubmitTransaction
+            // You might need to pass these as props or get them from a context
+            
+            
+                // Call the burn1 function
+                 burn1(account, signAndSubmitTransaction, currency);
+                // getBalancePerson(account);
+                setOrderMessage('Order Placed Successfully!');
+                setOrderPlaced(true);
+                toast.success('Order Placed');
+                setXP(xp + 1);
+                toast.success('Leveled UP!');
+       
+        } catch (error) {
+            console.error("Error during purchase:", error);
             toast.error('Purchase Failed');
+        } finally {
+            toast.dismiss(loadingToast);
         }
     };
+    // Function to handle the Buy button click and show toast
+    // const handleBuyClick = async (currency) => {
+    //     const loadingToast = toast.loading('Please wait...');
+
+    //     const result = await buyItem();  // Use the buyItem function
+    //     toast.dismiss(loadingToast); // Dismiss the loading toast
+
+    //     if (result) {
+    //         setOrderMessage('Order Placed Successfully!');
+    //         setOrderPlaced(true);
+    //         toast.success('Order Placed');
+    //         setXP(xp + 1);
+    //         toast.success('Leveled UP!');
+    //     } else {
+    //         toast.error('Purchase Failed');
+    //     }
+    // };
 
     // Function to render the stars based on rating
     const renderStars = (rating) => {
@@ -106,41 +133,20 @@ export default function XrContainer(props) {
                                     <span className="mr-1">Rating:</span> {renderStars(props.productInfo.ratings)}
                                 </div>
                                 <div className="mt-4 text-[15px] text-gray-300">
+                                  
                                     <p className="mb-1  text-[15px]">
-                                        <span className="font-semibold text-[15px]">Stock:</span> {props.productInfo.stock} available
-                                    </p>
-                                    <p className="mb-1  text-[15px]">
-                                        <span className="font-semibold text-[15px]">Price in ETH:</span> {props.productInfo.price.ETH}
-                                    </p>
-                                    <p className="mb-1  text-[15px]">
-                                        <span className="font-semibold text-[15px]">Price in ₹:</span> {props.productInfo.price.Rupees}
-                                    </p>
-                                    <p className="mb-1  text-[15px]">
-                                        <span className="font-semibold text-[15px]">Price in WallmartCoins:</span> {props.productInfo.price.WallmartCoins}
+                                        <span className="font-semibold text-[15px]">Price :</span> {props.productInfo.price.coins} 🪙
                                     </p>
                                 </div>
 
                                 <div className="mt-4 flex justify-between">
+                                 
                                     <button
-                                        onClick={() => handleBuyClick('ETH')}
+                                        onClick={() => handleBuyClick(props.productInfo.price.coins)}
                                         className="px-3 py-1 text-[15px] text-white rounded-sm transition-all border border-white duration-300 flex flex-col items-center"
                                     >
                                         <span>Buy</span>
-                                        <span className="text-[12px] text-gray-300">ETH</span>
-                                    </button>
-                                    <button
-                                        onClick={() => handleBuyClick('₹')}
-                                        className="px-3 py-1 text-[15px] text-white rounded-sm transition-all  border border-white duration-300 flex flex-col items-center"
-                                    >
-                                        <span>Buy</span>
-                                        <span className="text-[12px] text-gray-300">₹</span>
-                                    </button>
-                                    <button
-                                        onClick={() => handleBuyClick('WMC')}
-                                        className="px-3 py-1 text-[15px] text-white rounded-sm transition-all border border-white duration-300 flex flex-col items-center"
-                                    >
-                                        <span>Buy</span>
-                                        <span className="text-[12px] text-gray-300">WMC</span>
+                                        <span className="text-[12px] text-gray-300"> {props.productInfo.price.coins}</span>
                                     </button>
                                 </div>
                             </>

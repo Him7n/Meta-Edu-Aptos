@@ -30,6 +30,7 @@ import QuestNotification from '../Component/QuestNotification.js';
 import ConnectAptos from './ConnectAptos.js';
 import GlobalChat from '../Component/GlobalChat.js';
 import GlobalChatButton from '../Component/GlobalChatButton.js';
+import { SocketManager } from '../Socketmanager.js';
 
 const Loader = ({ onLoaded }) => {
     const { progress, item, loaded, total } = useProgress();
@@ -174,6 +175,8 @@ const Enviroment = () => {
                     { name: 'shift', keys: ['Shift'] },
                 ]}
             >
+                        <SocketManager />
+
                 <ConnectMetamask />
                 <MenuOffice />
                 <MenuClass />

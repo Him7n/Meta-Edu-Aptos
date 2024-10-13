@@ -476,7 +476,7 @@ export default function Experience() {
           <meshBasicMaterial color="violet"  />
         </mesh>
         <Office />
-        <ModSimulator/>
+        {/* <ModSimulator/> */}
         <Venue />
         <VenueFile />
         <ProcessML />
@@ -513,10 +513,9 @@ export default function Experience() {
         <RankBoard />
         <Banner />
         <FileSchool />
-        {/* <Podium /> */}
-        <Billboard />
+        <Podium />
+        {/* <Billboard /> */}
         {/* <primitive object={wilow} scale={1} /> */}
-        {/* <SocketManager /> */}
         {/* <VoiceChat/> */}
         {/* <Player2/> */}
       </Physics>

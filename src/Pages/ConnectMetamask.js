@@ -122,7 +122,7 @@ const FormData = require("form-data");
                 setMetamaskId(metamaskId);
 
             } else {
-                alert('Please install MetaMask extension to use this application.');
+                // alert('Please install MetaMask extension to use this application.');
             }
         }
 

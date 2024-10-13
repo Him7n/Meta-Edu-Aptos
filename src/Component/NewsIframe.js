@@ -70,7 +70,7 @@ const NewsIframe = () => {
 
   return (
     <Html
-      position={[49.57288828590144, 3, -40.022221541393286]}
+      position={[48.57288828590144, 3, -40.022221541393286]}
       rotation={[0, 0, 0]}
       transform
       scale={0.6}

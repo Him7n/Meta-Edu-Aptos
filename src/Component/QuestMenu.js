@@ -10,7 +10,9 @@ const QuestMenu = () => {
     let Me = null;
     const [characters] = useAtom(charactersAtom);
     characters.map((char) => {
-        if (char.id === socket.id) { Me = char; }
+        if (char.id === socket.id) {
+            Me = char;
+        }
     });
 
     const [questmenu, setquestMenu] = useAtom(QuestMenuAtom);
@@ -30,7 +32,8 @@ const QuestMenu = () => {
         numberOfStudents: '', // For Study Group Quest
         deadline: '',
         rewardType: '', // To keep track of reward type
-        rewardDetails: '' // Details about the reward
+        rewardDetails: '', // Details about the reward
+        rewardAmount: '', // New input for reward amount
     });
 
     const handleViewClick = () => {
@@ -91,6 +94,7 @@ const QuestMenu = () => {
             reward: {
                 type: questData.rewardType, // Now getting reward type from form
                 details: questData.rewardDetails, // Now getting reward details from form
+                amount: questData.rewardAmount, // New reward amount
             },
             visibility: 'public', // Default visibility
             tags: [], // Optional tags
@@ -98,10 +102,10 @@ const QuestMenu = () => {
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
         };
+
         socket.emit('createQuest', newQuest); // Emit event to server
         setCustomQuestForm(false); // Hide form after submission
-        // setquestMenu(false);
-        // setShow(false);
+
         setQuestData({
             name: '',
             description: '',
@@ -113,7 +117,8 @@ const QuestMenu = () => {
             numberOfStudents: '',
             deadline: '',
             rewardType: '',
-            rewardDetails: ''
+            rewardDetails: '',
+            rewardAmount: '', // Reset reward amount
         }); // Reset form data
         setSelectedQuestType(''); // Reset selected quest type
     };
@@ -319,10 +324,25 @@ const QuestForm = ({ type, questData, handleChange, handleSubmit, setCustomQuest
                 onChange={handleChange}
                 required
             />
-            <button type="submit" className="bg-indigo-500 rounded-md text-white py-2 px-4 hover:bg-indigo-600 transition duration-200">
+            <input
+                name="rewardAmount"
+                type="number"
+                className="bg-gray-100 border border-gray-300 p-2 mb-2 outline-none"
+                placeholder="Reward Amount"
+                value={questData.rewardAmount} // New input for reward amount
+                onChange={handleChange}
+                required
+            />
+            <button
+                type="submit"
+                className="bg-indigo-500 text-lg rounded-md text-white py-2 px-4 hover:bg-indigo-600 transition duration-200"
+            >
                 Create Quest
             </button>
-            <div onClick={() => setCustomQuestForm(false)} className="btn border border-red-500 p-1 px-3 font-semibold cursor-pointer text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-200 ml-2">
+            <div
+                onClick={() => setCustomQuestForm(false)}
+                className="btn border border-red-500 p-1 px-3 font-semibold cursor-pointer text-white bg-red-500 rounded-md hover:bg-red-600 transition duration-200 ml-2"
+            >
                 Cancel
             </div>
         </form>

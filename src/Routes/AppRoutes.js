@@ -39,8 +39,8 @@ const AppRoutes = () => {
                     <Route element={<AskaiInput/>} path='/ai' />
                     <Route element={<ProcessML />} path='/sc' />
                     <Route element={<ConnectMetamask />} path='/mc' /> */}
-          <Route element={<SelectiveRenderTeacher />} path='/test' /> 
-          <Route element={<ConnectAptos/>} path="/ct" />
+          {/* <Route element={<SelectiveRenderTeacher />} path='/test' />  */}
+          {/* <Route element={<ConnectAptos/>} path="/ct" /> */}
           <Route element={<Landingpage />} path="/" />{" "}
           <Route path="/signup" element={<Signup />} />
           <Route element={<Enviroment />} path="/verse" />

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { socket } from "../Socketmanager";
+import { Findme } from "../Utils/Findme";
 
 const AttendanceAlert = () => {
   const [showAlert, setShowAlert] = useState(false);
-
+  const [me, setme] = useState(Findme);
   socket.on("attendanceRequest", () => {
     setShowAlert(true);
   });
@@ -16,23 +17,27 @@ const AttendanceAlert = () => {
   if (!showAlert) return null;
 
   return (
-    <div className="absolute z-40 top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-4 rounded shadow-lg">
-        <p>Are you present?</p>
-        <button
-          onClick={() => handleResponse(true)}
-          className="m-2 p-2 bg-green-500 text-white rounded"
-        >
-          Yes
-        </button>
-        <button
-          onClick={() => handleResponse(false)}
-          className="m-2 p-2 bg-red-500 text-white rounded"
-        >
-          No
-        </button>
-      </div>
-    </div>
+    <>
+      {me.role == "student" && (
+        <div className="absolute z-40 top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-4 rounded shadow-lg">
+            <p>Are you present?</p>
+            <button
+              onClick={() => handleResponse(true)}
+              className="m-2 p-2 bg-green-500 text-white rounded"
+            >
+              Yes
+            </button>
+            <button
+              onClick={() => handleResponse(false)}
+              className="m-2 p-2 bg-red-500 text-white rounded"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

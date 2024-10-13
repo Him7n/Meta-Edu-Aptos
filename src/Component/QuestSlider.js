@@ -173,7 +173,7 @@ const QuestSlider = () => {
                   {quest.actionRequired}
                 </button>
               )}
-              {quest.status === "open" && quest.creator.userId != Me.id && (
+              {quest.status === "open" && quest.creator.userId != Me && (
                 <button
                   className="mt-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                   onClick={() => handleAcceptQuest(quest.questId)}
@@ -181,7 +181,7 @@ const QuestSlider = () => {
                   Accept Quest
                 </button>
               )}
-              {quest.creator.userId === Me.id &&
+              { 
                 quest.pendingApprovals &&
                 quest.pendingApprovals.length > 0 && (
                   <div className="mt-2">

@@ -15,25 +15,33 @@ import { Findme } from "../Utils/Findme";
 
 import { accumulativeContext } from "@react-three/drei";
 import { useAtom } from "jotai";
-import { socket } from "../Socketmanager";
-import { mintfunc } from "../Component/AptosFunctions";
+import { charactersAtom, socket } from "../Socketmanager";
+import { mintfunc, Transfer } from "../Component/AptosFunctions";
+import { CoinsAtom } from "../Utils/CoinsAtom";
 
 const ConnectAptos = () => {
+  const [showTransferMenu, setShowTransferMenu] = useState(false);
+
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
+  const [transferAmount, setTransferAmount] = useState("");
   const [me, setme] = useAtom(Findme);
   const wallets = [new PetraWallet()];
   const [addreses, setAddress] = useAtom(AddressAtom);
   const { account } = useWallet();
   const { signAndSubmitTransaction } = useWallet();
-  const [coins, setcoins] = useState(0);
+  const [coins, setcoins] = useAtom(CoinsAtom);
+  const [characters, setchar] = useAtom(charactersAtom);
+
+  // Mock data for people (replace with actual data from your application)
+
   const getBalancePerson = async () => {
     if (!account || !account.address) {
       console.error("Account is not defined or missing address.");
       return null;
     }
-   
-    try {
-    
 
+    try {
       // Fetch the resource
       const accountResource = await aptos.getAccountResource({
         accountAddress: account?.address,
@@ -54,7 +62,6 @@ const ConnectAptos = () => {
         return null;
       }
       setcoins(accountResource.value);
-
     } catch (error) {
       console.error("Error fetching counter value:", error);
       return null;
@@ -80,7 +87,15 @@ const ConnectAptos = () => {
       console.error("Minting failed:", error);
     }
   };
-  const Transfer = async () => {
+  const HandleTransfer = async () => {
+    Transfer(
+      account,
+      signAndSubmitTransaction,
+      "0x2a2f75fadf5ab3bbbe9baffc87f0f6be11aece54350ac85abb68ade94404dc89",
+      1
+    );
+  };
+  const Transfer2 = async () => {
     if (!account || !account.address) {
       console.error("Account is not defined or missing address.");
       return null;
@@ -134,66 +149,145 @@ const ConnectAptos = () => {
   useEffect(() => {
     if (account && account.address) {
       socket.emit("setAccountAddress", account.address);
-    }
-  }, [account]);
-  useEffect(() => {
-    if (account) {
       getBalancePerson();
     }
   }, [account]);
-  const handleMint = async () =>{ 
-    if(account){
+  // useEffect(() => {
+  //   if (account) {
+  //     getBalancePerson();
+  //   }
+  // }, [account]);
+  const handleMint = async () => {
+    if (account) {
+      mintfunc(account, signAndSubmitTransaction, 1);
+      await getBalancePerson();
+    }
+  };
+  const handleTransferClick = () => {
+    setShowTransferMenu(true);
+  };
 
-      mintfunc(account, signAndSubmitTransaction,1);
-  await  getBalancePerson();
+  const handlePersonClick = (person) => {
+    setSelectedPerson(person);
+  };
+
+  const handleTransferSubmit = async () => {
+    if (selectedPerson && transferAmount) {
+      await Transfer(
+        account,
+        signAndSubmitTransaction,
+        selectedPerson.accountAddress,
+        parseInt(transferAmount)
+      );
+
+      setShowTransferMenu(false);
+
+      setSelectedPerson(null);
+
+      setTransferAmount("");
+
+      await getBalancePerson();
     }
-    }
+  };
+
   return (
-    <div className="w-full scale-50 flex-col items-center justify-center  bg-green-100/40 absolute z-50 ">
+    <div className="w-full scale-50 flex-col items-center justify-center bg-green-100/40 absolute z-10">
       <WalletSelector />
-      <div
-        className="text-xs
-      
-      "
-      >
-        {account != null && account.address}
-      </div>
-      <button
-        onClick={handleMint}
-        className="bg-blue-500 absolute right-6 -top-2 hover:bg-blue-700  text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
-      >
-        Mint
-      </button>
+
+      <div className="text-xs">{account != null && account.address}</div>
+
+      {me && me?.role && me.role == "teacher" && (
+        <button
+          onClick={handleMint}
+          className="bg-blue-500 absolute right-6 -top-2 hover:bg-blue-700 text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
+        >
+          Mint
+        </button>
+      )}
+
       <button
         onClick={getBalancePerson}
-        className="bg-blue-500 absolute right-20 top-24 hover:bg-blue-700  text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
+        className="bg-blue-500 absolute right-20 top-24 hover:bg-blue-700 text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
       >
         Burn
       </button>
+
       <button
-        onClick={Transfer}
-        className="bg-blue-500 absolute right-14 top-10 hover:bg-blue-700  text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
+        onClick={handleTransferClick}
+        className="bg-blue-500 absolute right-14 top-10 hover:bg-blue-700 text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
       >
         Transfer
       </button>
-      <div className=" absolute text-lg   -right-[5rem] -top-1  text-[15px]">
-        {" "}
+
+      <div className="absolute text-lg -right-[5rem] -top-1 text-[15px]">
         {coins} 🪙
       </div>
+
+      {showTransferMenu && (
+        <div className="fixed inset-0 top-[15rem] left-[5rem] z-[99] bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-xl w-96">
+            <h2 className="text-2xl font-bold mb-4 text-center">
+              Transfer Coins
+            </h2>
+
+            <ul className="divide-y divide-gray-200 bg-white/60 shadow rounded-lg mb-4">
+              {characters.map((character) => (
+                <>
+                  {character.accountAddress != "" && (
+                    <li
+                      key={character.id}
+                      className={`py-3 px-4 cursor-pointer hover:bg-gray-100 rounded-lg ${
+                        selectedPerson?.id === character.id
+                          ? "bg-indigo-100"
+                          : ""
+                      }`}
+                      onClick={() => handlePersonClick(character)}
+                    >
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-gray-700">
+                          {character.id}
+                        </span>
+
+                        <span className="text-sm text-gray-500">
+                          {/* {character.accountAddress} */}
+                        </span>
+                      </div>
+                    </li>
+                  )}
+                </>
+              ))}
+            </ul>
+
+            {selectedPerson && (
+              <div className="mt-4">
+                <input
+                  type="number"
+                  value={transferAmount}
+                  onChange={(e) => setTransferAmount(e.target.value)}
+                  placeholder="Enter amount to transfer"
+                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+
+                <button
+                  onClick={handleTransferSubmit}
+                  className="mt-2 w-full bg-indigo-500 text-white py-2 px-4 rounded-md text-lg border-none hover:bg-indigo-600"
+                >
+                  Send
+                </button>
+              </div>
+            )}
+
+            <button
+              onClick={() => setShowTransferMenu(false)}
+              className="mt-4 w-full bg-gray-300 text-gray-700 py-2 px-4 rounded-md text-lg border-none hover:bg-gray-400"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </div>
-    // <Layout>
-    //   <Row align="middle">
-    //     <Col span={10} offset={2}>
-    //       <h1>Our todolist</h1>
-    //     </Col>
-    //     <Col span={12} style={{ textAlign: "right", paddingRight: "200px" }}>
-    //       <h1>Connect Wallet</h1>
-    //       <Col span={12} style={{ textAlign: "right", paddingRight: "200px" }}>
-    //         <WalletSelector />
-    //       </Col>
-    //     </Col>
-    //   </Row>
-    // </Layout>
   );
 };
+
 export default ConnectAptos;

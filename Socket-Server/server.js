@@ -22,7 +22,7 @@ const generateRandomPosition = () => {
 };
 
 io.on("connection", (socket) => {
-  //console.log("User connected: " + socket.id);
+  console.log("User connected: " + socket.id);
 
   // Automatically join a room upon connection
   sockettoroom.set(socket.id, "gameRoom");
@@ -77,6 +77,7 @@ io.on("connection", (socket) => {
 
   // Handle position event
   socket.on("position", (position) => {
+    // console.log(characters);
     const character = characters.find(
       (character) => character.id === socket.id
     );
@@ -293,6 +294,8 @@ io.on("connection", (socket) => {
       participants: [],
     };
     quests.push(newQuest);
+
+    console.log(quests)
     io.to("gameRoom").emit("updateQuests", quests);
     io.to("gameRoom").emit("questCreated", {
       message: `A new quest "${newQuest.name}" has been created!`,
@@ -301,7 +304,10 @@ io.on("connection", (socket) => {
   });
   socket.on("acceptQuest", ({ questId, userId, username }) => {
     console.log(questId, userId);
+    console.log(quests)
     const quest = quests.find((q) => q.questId === questId);
+    console.log("quest qccpted")
+    console.log(quest);
     if (quest && quest.status === "open") {
       quest.pendingApprovals.push({ userId, username });
       io.to(quest.creator.userId).emit("questParticipantRequest", {
@@ -333,7 +339,7 @@ io.on("connection", (socket) => {
       }
     }
   });
-
+//iska trans abhi nahi 
   socket.on("rejectParticipant", ({ questId, userId }) => {
     const quest = quests.find((q) => q.questId === questId);
     if (quest) {
@@ -343,6 +349,7 @@ io.on("connection", (socket) => {
       io.to(userId).emit("questParticipationRejected", {
         questId,
         questName: quest.name,
+
       });
       io.to("gameRoom").emit("updateQuests", quests);
     }
@@ -422,7 +429,7 @@ console.log(characters)
       io.to("gameRoom").emit("updateClasses", classes);
     }
   });
-  socket.emit("updateEvents", eventsList);
+  // socket.emit("updateEvents", eventsList);
   // Emit the updated eventsList when a new client joins
   // socket.on("peer:nego:needed", ({ to, offer }) => {
   //   //console.log("peer:nego:needed", offer);

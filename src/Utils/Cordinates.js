@@ -26,7 +26,7 @@ const Cordinates = () => {
   // //console.log(`my socket id ${socket.id}`);
   const [characters] = useAtom(charactersAtom);
   const [me, setMe] = useAtom(Findme)
-  // //console.log(characters.length);
+  console.log(characters.length);
 
 
   characters.map((char) => {

@@ -3,14 +3,14 @@ import { useControls } from 'leva';
 import { useGLTF } from '@react-three/drei';
 
 const models = {
-  castle_on_hills: 'models/Car1.glb',
-  animal_crossing_map: 'models/Mart.glb',
+ car : 'models/Car1.glb',
+  sheenchair: 'models/sheenchair.glb',
 };
 
 export const ModSimulator = () => {
   const { selectedModel, scale, positionX, positionY, positionZ, rotationX, rotationY, rotationZ } = useControls('Model Simulator', {
     selectedModel: {
-      value: 'castle_on_hills',
+      value: 'car',
       options: Object.keys(models),
       label: 'Select Model',
     },

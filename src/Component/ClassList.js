@@ -2,18 +2,50 @@
 import React, { useState } from "react";
 import { useAtom } from "jotai";
 import { charactersAtom } from "../Socketmanager";
+import { mintfunc } from "./AptosFunctions";
+import { useWallet } from "@aptos-labs/wallet-adapter-react";
 
 const ClassList = () => {
   const [characters] = useAtom(charactersAtom);
   const [coinInput, setCoinInput] = useState({});
   const [showInput, setShowInput] = useState({});
 
-  const handleSendCoins = (id) => {
-    // Logic to send coins
-    //console.log(`Sending ${coinInput[id]} coins to ${id}`);
-    // Reset input field
-    setCoinInput({ ...coinInput, [id]: "" });
-    setShowInput({ ...showInput, [id]: false });
+  // const handleSendCoins = (id) => {
+  //   // Logic to send coins
+  //   //console.log(`Sending ${coinInput[id]} coins to ${id}`);
+  //   // Reset input field
+  //   setCoinInput({ ...coinInput, [id]: "" });
+  //   setShowInput({ ...showInput, [id]: false });
+  // };
+  const { account, signAndSubmitTransaction } = useWallet();
+
+  const handleSendCoins = async (character) => {
+    const amount = parseInt(coinInput[character.id], 10);
+
+    if (isNaN(amount) || amount <= 0) {
+      toast.error("Invalid coin amount");
+
+      return;
+    }
+
+    try {
+      await transferfunc(
+        account,
+        signAndSubmitTransaction,
+        character.accountAddress,
+        amount
+      );
+
+      toast.success(`Transferred ${amount} coins to ${character.id}`);
+
+      // Reset input field
+
+      setCoinInput({ ...coinInput, [character.id]: "" });
+
+      setShowInput({ ...showInput, [character.id]: false });
+    } catch (error) {
+      toast.error(`Error transferring coins: ${error.message}`);
+    }
   };
 
   return (

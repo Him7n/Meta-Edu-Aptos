@@ -406,7 +406,8 @@ io.on("connection", (socket) => {
 
     if (character) {
       character.accountAddress = address;
-
+console.log(character.accountAddress)
+console.log(characters)
       // Notify all clients about the updated character
 
       io.to("gameRoom").emit("characterUpdated", character);

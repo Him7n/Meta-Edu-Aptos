@@ -24,36 +24,15 @@ const ConnectAptos = () => {
   const [addreses, setAddress] = useAtom(AddressAtom);
   const { account } = useWallet();
   const { signAndSubmitTransaction } = useWallet();
-  const [coins,setcoins] = useState(0);
-   const getBalancePerson = async () => {
-
+  const [coins, setcoins] = useState(0);
+  const getBalancePerson = async () => {
     if (!account || !account.address) {
       console.error("Account is not defined or missing address.");
       return null;
     }
-    // try {
-    //   const result = await aptos.view({
-    //     function: `${moduleAddress}::BasicCoins::balance`, // View function to call
-    //     arguments: [], // No arguments required for this function
-    //   });
-
-    //   console.log("Message content:", result);
-    //   console.log(result);
-    //   return result;
-    // } catch (error) {
-    //   console.error("Failed to get message content:", error);
-    // }
-    // // aptos.getAccountResource({
-    // //   //       accountAddress: account?.address,
-    // //   //       resourceType: `${moduleAddress}::message_board::Message`,
-    // //   //     });
-
-    // console.log("Account Address:", account.address); // Log the account address
-
+   
     try {
-      // Define the resource type string
-      // const resourceType = `${moduleAddress}::CounterModule_v5::Counter`;
-      // console.log("Resource Type:", resourceType); // Log the resource type for debugging
+    
 
       // Fetch the resource
       const accountResource = await aptos.getAccountResource({
@@ -69,25 +48,13 @@ const ConnectAptos = () => {
         );
         return null;
       }
-setcoins(accountResource.coins.val)
+      setcoins(accountResource.coins.val);
       if (!accountResource.value) {
         console.error("Data field in the resource is undefined.");
         return null;
       }
       setcoins(accountResource.value);
 
-      // Check if value is undefined or null before calling toString
-      // const counterValue =
-      //   accountResource.data.value !== undefined
-      //     ? accountResource.data.value.toString()
-      //     : null;
-
-      // if (counterValue === null) {
-      //   console.error("Counter value is undefined.");
-      //   return null;
-      // }
-
-      // console.log("Counter Value:", counterValue); // Log the value of the counter
     } catch (error) {
       console.error("Error fetching counter value:", error);
       return null;
@@ -119,26 +86,26 @@ setcoins(accountResource.coins.val)
       return null;
     }
     if (!account) return [];
-  const transaction = {
-    data: {
-      function: `${moduleAddress}::BasicCoins::transfer`,
-      functionArguments: [
-      "0x2a2f75fadf5ab3bbbe9baffc87f0f6be11aece54350ac85abb68ade94404dc89",
-      1
-      ],
-    },
+    const transaction = {
+      data: {
+        function: `${moduleAddress}::BasicCoins::transfer`,
+        functionArguments: [
+          "0x2a2f75fadf5ab3bbbe9baffc87f0f6be11aece54350ac85abb68ade94404dc89",
+          1,
+        ],
+      },
+    };
+    try {
+      // sign and submit transaction to chain
+      const response = await signAndSubmitTransaction(transaction);
+      // wait for transaction
+      await aptos.waitForTransaction({ transactionHash: response.hash });
+      setAccountHasList(true);
+    } catch (error) {
+      setAccountHasList(false);
+    } finally {
+    }
   };
-  try {
-    // sign and submit transaction to chain
-    const response = await signAndSubmitTransaction(transaction);
-    // wait for transaction
-    await aptos.waitForTransaction({ transactionHash: response.hash });
-    setAccountHasList(true);
-  } catch (error) {
-    setAccountHasList(false);
-  } finally {
-  }
-  }
   const mint1 = async () => {
     if (!account) return;
 
@@ -169,13 +136,18 @@ setcoins(accountResource.coins.val)
       socket.emit("setAccountAddress", account.address);
     }
   }, [account]);
-  useEffect(()=>{
-    
-    if(account){
+  useEffect(() => {
+    if (account) {
       getBalancePerson();
     }
-  },[account.address])
-  const handleMint = () => mintfunc(account, signAndSubmitTransaction);
+  }, [account]);
+  const handleMint = async () =>{ 
+    if(account){
+
+      mintfunc(account, signAndSubmitTransaction,1);
+  await  getBalancePerson();
+    }
+    }
   return (
     <div className="w-full scale-50 flex-col items-center justify-center  bg-green-100/40 absolute z-50 ">
       <WalletSelector />
@@ -193,19 +165,21 @@ setcoins(accountResource.coins.val)
         Mint
       </button>
       <button
-        onClick={burn1}
+        onClick={getBalancePerson}
         className="bg-blue-500 absolute right-20 top-24 hover:bg-blue-700  text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
       >
         Burn
       </button>
-      <button 
-      onClick={Transfer}
+      <button
+        onClick={Transfer}
         className="bg-blue-500 absolute right-14 top-10 hover:bg-blue-700  text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
-        >
+      >
         Transfer
       </button>
-      <div className=' absolute text-lg   -right-[5rem] -top-1  text-[15px]' >  {coins} 🪙</div>
-
+      <div className=" absolute text-lg   -right-[5rem] -top-1  text-[15px]">
+        {" "}
+        {coins} 🪙
+      </div>
     </div>
     // <Layout>
     //   <Row align="middle">

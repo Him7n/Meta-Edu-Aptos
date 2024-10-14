@@ -54,7 +54,7 @@ Meta-Edu-Aptos provides a wide range of functionalities tailored to enhance the 
 
 - **Quests and Assignments**: Students can complete various educational quests and assignments. Each completed task rewards them with Aptos-based tokens, fostering motivation and engagement in their learning journey.
 
-- **NFT Minting**: Based on their achievements, students can mint NFTs that represent their milestones and accomplishments. This feature encourages a sense of ownership and pride in their educational achievements.
+- **NFT Minting**: Based on their achievements, students can mint NFTs that represent their milestones and accomplishments. This feature encourages a sense of ownership and pride in their educational achievements.(future feature)
 
 - **Token Rewards System**: The platform has an integrated rewards system where students earn tokens for their academic efforts. These tokens can be utilized in the virtual shop for educational resources or fun items.
 

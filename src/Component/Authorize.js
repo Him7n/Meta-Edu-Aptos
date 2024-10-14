@@ -8,12 +8,12 @@ const Authorize = () => {
   useEffect(() => {
     const authorizeUser = async () => {
       const tokenvalue = localStorage.getItem('token');
-      
+
       if (tokenvalue === null) {
-        //console.log('Navigate to signin');
+        ////console.log('Navigate to signin');
         navigate('/signin');
       } else {
-        //console.log(tokenvalue);
+        ////console.log(tokenvalue);
         try {
           const response = await axios.post(
             'http://localhost:3002/api/v1/user/authorize',
@@ -25,7 +25,7 @@ const Authorize = () => {
             }
           );
 
-          //console.log(response.status);
+          ////console.log(response.status);
 
           if (response.status === 200) {
             return;

@@ -16,16 +16,16 @@ const VenueFile = () => {
 
 
     // if (character.url != "") { seturl(character.url) }
-    //console.log(url);
+    ////console.log(url);
     const [characters] = useAtom(charactersAtom);
     if (characters[0]) {
         if (characters[0].url != "" && characters[0].url != url) {
             seturl(characters[0].url);
         }
         // if (characters[0].url != "" && characters[0].url != url) { seturl(characters[0].url) }
-        // //console.log(url);
+        // ////console.log(url);
     }
-    // //console.log(me);
+    // ////console.log(me);
 
     const handleFileChange = (e) => {
         const file = e.target.value;
@@ -36,10 +36,10 @@ const VenueFile = () => {
         // Perform upload logic here using selectedFile
         setmessage("Loading...");
         if (selectedFile) {
-            //console.log('Uploading file', selectedFile);
+            ////console.log('Uploading file', selectedFile);
             // Example: uploadFile(selectedFile);
         } else {
-            //console.log('No file selected.');
+            ////console.log('No file selected.');
         }
 
 
@@ -47,17 +47,17 @@ const VenueFile = () => {
             path: selectedFile
         })
 
-        //console.log(response.data.outputFilePath);
+        ////console.log(response.data.outputFilePath);
         if (response.data.outputFilePath) {
             setmessage("File uploaded");
             seturl(`http://localhost:3002/${response.data.filename}`);
-            //console.log(url);
+            ////console.log(url);
             const joiner = response.data.filename;
-            //console.log(joiner);
-            //console.log("http://localhost:3002/" + joiner);
+            ////console.log(joiner);
+            ////console.log("http://localhost:3002/" + joiner);
             const final = "http://localhost:3002/" + joiner
             socket.emit("url", final);
-            // //console.log(url);
+            // ////console.log(url);
             setShow(true);
             setLoading(false);
         }

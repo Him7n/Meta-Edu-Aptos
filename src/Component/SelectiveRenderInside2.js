@@ -9,7 +9,7 @@ import { Html } from '@react-three/drei'
 const SelectiveRenderInside2 = () => {
     const [me] = useAtom(Findme)
     const [show, setShow] = useState(false)
-    // //console.log(me)
+    // ////console.log(me)
     if (me != null) {
 
         if (me.role == 'teacher') {
@@ -18,7 +18,7 @@ const SelectiveRenderInside2 = () => {
 
                 setShow(true);
             }
-            // //console.log("you are a Teacher")
+            // ////console.log("you are a Teacher")
         } else {
             if (show) {
                 setShow(false);
@@ -34,7 +34,7 @@ const SelectiveRenderInside2 = () => {
         <>
             {
 
-                show && <UploadClass/>
+                show && <UploadClass />
             }
         </>
 

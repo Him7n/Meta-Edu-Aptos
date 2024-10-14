@@ -6,11 +6,11 @@ import { Html } from '@react-three/drei';
 
 const MessageBoxclassroom = () => {
     const [message, setMessage] = useAtom(AiMessageAtom);
-    //console.log(message);
+    ////console.log(message);
 
     return (
         <>
-            <Html transform occlude={'blending'} zIndexRange={[10, 1]} position={[66, 2.5, -23.6]} rotation-y={- Math.PI* 4/3}
+            <Html transform occlude={'blending'} zIndexRange={[10, 1]} position={[66, 2.5, -23.6]} rotation-y={- Math.PI * 4 / 3}
                 scale={0.2}  >
 
                 <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1  bg-transparent items-end">

@@ -10,8 +10,8 @@ const AssignmentBox = () => {
         if (char.id == socket.id) {
             assignments = char.assignments;
         }
-        // //console.log(char.position);
-        // //console.log(char.delta);
+        // ////console.log(char.position);
+        // ////console.log(char.delta);
     });
     //  assignments = [
     //     { id: 1, name: 'Assignment 1', details: 'Details for Assignment 1' },
@@ -19,7 +19,7 @@ const AssignmentBox = () => {
     //     { id: 3, name: 'Assignment 3', details: 'Details for Assignment 3' },
     //     // Add more assignments as needed
     // ];
-    //console.log(assignments);
+    ////console.log(assignments);
     const [status, setstatus] = useState(null);
     const [load, setLoad] = useState(false);
 
@@ -29,7 +29,7 @@ const AssignmentBox = () => {
         setlink(e.target.value);
     };
     const HandleSubmit = async () => {
-        //console.log(link);
+        ////console.log(link);
         setLoad(true);
         setstatus("Loading...");
         const response = await axios.post(
@@ -39,10 +39,10 @@ const AssignmentBox = () => {
             }
         );
         setstatus("Posted");
-        //console.log(response.data.filename);
+        ////console.log(response.data.filename);
         const name = response.data.filename;
         const url = "http://localhost:3002/" + name[0];
-        //console.log(url);
+        ////console.log(url);
         socket.emit("assignmentdone", {
             link: url,
             title: selectedAssignment.title,

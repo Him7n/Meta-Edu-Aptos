@@ -30,16 +30,16 @@ import { PlayerXP } from './Utils/PlayerXP'
 
 const Player = ({ id, position, rotation, delta, aanimations }) => {
 
-// const [_up] = useAtom(upAtom)
-// //console.log(position)
-const [XP] = useAtom(PlayerXP);
-// //console.log(XP);
-    const [showmenuAtom, setShowMenuAtom] = useAtom(menuAtom) 
-     const [clothmenu, setClothMenu] = useAtom(ClothMenuAtom);
+    // const [_up] = useAtom(upAtom)
+    // ////console.log(position)
+    const [XP] = useAtom(PlayerXP);
+    // ////console.log(XP);
+    const [showmenuAtom, setShowMenuAtom] = useAtom(menuAtom)
+    const [clothmenu, setClothMenu] = useAtom(ClothMenuAtom);
     const DefaultCordinates2 = new THREE.Vector3(60.84252749750952, -0.9, 42.95368943309931);
     const [showClothmenu, setShowClothMenu] = useState(false);
 
-    
+
     /**
      * 
      * 
@@ -83,11 +83,11 @@ const [XP] = useAtom(PlayerXP);
     const [characters] = useAtom(charactersAtom);
     // finding me 
     const character = characters.find((character) => { return character.id == socket.id })
-    // //console.log(position);
-    // //console.log(position);
-    // //console.log(delta)
-    // //console.log(id);
-    // //console.log(character);
+    // ////console.log(position);
+    // ////console.log(position);
+    // ////console.log(delta)
+    // ////console.log(id);
+    // ////console.log(character);
     /**
      * 
      * 
@@ -121,7 +121,7 @@ const [XP] = useAtom(PlayerXP);
 
     const camera = useThree((state) => state.camera)
     showmenu ? SmoothDelay(true) : setShowMenuAtom(false);
-    
+
     // GSAP working , just working 
     // [65.10081066764732, -0.9, 28.995583921465915]
     if (showmenu) {
@@ -138,16 +138,16 @@ const [XP] = useAtom(PlayerXP);
 
 
 
-    }else if(showClothmenu) {
+    } else if (showClothmenu) {
         gsap.to(camera.position, {
             x: 53.84252749750952,
             y: 3,
             z: 42.995583921465915,
             ease: "easein",
         });
-    } 
+    }
 
-    
+
 
 
 
@@ -203,12 +203,12 @@ const [XP] = useAtom(PlayerXP);
 
     const ani = model.animations;
     // let aniname = ani.name;
-    // //console.log(ani);
+    // ////console.log(ani);
     const run = useFBX("./assets/character/running.fbx");
     run.animations[0].name = "run";
     const sit = useFBX("./assets/character/Sitting.fbx")
     sit.animations[0].name = "sit"
-    // //console.log(run.animations[0].name);
+    // ////console.log(run.animations[0].name);
     if (ani.length < 5) {
 
         ani.push(run.animations[0])
@@ -217,21 +217,21 @@ const [XP] = useAtom(PlayerXP);
     }
     ani["run"] = run.animations[0];
     ani["sit"] = sit.animations[0];
-    // //console.log(ani.length, "ani ka size")
+    // ////console.log(ani.length, "ani ka size")
     // AAnimations.push({
     //     name: "run", clip: mixer.clipAction(run.animations[0])
     // });
     const animations = useAnimations(ani, model)
-    // //console.log(run.animations);
+    // ////console.log(run.animations);
     run.animations[0].name = "run";
-    // //console.log(run.animations[0].name);
+    // ////console.log(run.animations[0].name);
     // leva
 
     //  const { animationName } = useControls({
     //     animationName: { options: animations.names }
     // })
     // leva
-    // //console.log(animations.actions)
+    // ////console.log(animations.actions)
     useEffect(() => {
         const action = animations.actions[currentAnimation]
         action
@@ -260,17 +260,17 @@ const [XP] = useAtom(PlayerXP);
 
 
 
-    // //console.log(model.scene);
+    // ////console.log(model.scene);
     useFrame((state, delta) => {
 
-        // //console.log("ShowmenuyAtom        :" + showmenuAtom)
+        // ////console.log("ShowmenuyAtom        :" + showmenuAtom)
 
         // body.current.rotation = new THREE.Vector3(0,Math.PI,0);
-        // //console.log(getkeys());
+        // ////console.log(getkeys());
 
         const { forward, left, right, jump, back, shift } = getkeys();
         // socket.emit()
-        // //console.log(jump + " " + shift + " " + left + " " + right + " " + back + " " + shift);
+        // ////console.log(jump + " " + shift + " " + left + " " + right + " " + back + " " + shift);
 
         const impulse = { x: 0, y: 0, z: 0 }
         const torque = { x: 0, y: 0, z: 0 }
@@ -300,11 +300,11 @@ const [XP] = useAtom(PlayerXP);
         //   body.current.applyTorqueImpulse(torque);
 
 
-        // //console.log(keys);
+        // ////console.log(keys);
 
         /** Camera */
         // const bodyposition = body.current.translation();
-        // //console.log(bodyposition)
+        // ////console.log(bodyposition)
         // const cameraposition = new THREE.so kse();
         // cameraposition.copy(bodyposition);
         // cameraposition.z += 10;
@@ -322,13 +322,13 @@ const [XP] = useAtom(PlayerXP);
         const bodyposition = body.current.position;
 
         if (body.current.position.distanceTo(DefaultCordinates) <= 4) {
-            // //console.log("body.current.position.distanceTo(DefaultCordinates in ");
+            // ////console.log("body.current.position.distanceTo(DefaultCordinates in ");
             // setShowMenu(()=>{ if(showmenu) })
 
             !showmenu ? setShowMenu(true) : null;
 
         } else {
-            // //console.log("out")
+            // ////console.log("out")
             showmenu ? setShowMenu(false) : null;
         }
 
@@ -340,8 +340,8 @@ const [XP] = useAtom(PlayerXP);
         //     setClothMenu(false);
         // }
 
-        // //console.log(showmenu);
-        // //console.log(
+        // ////console.log(showmenu);
+        // ////console.log(
         //     clothmenu, menuAtom
         // )
         if (!showmenu && !showClothmenu) {
@@ -360,8 +360,8 @@ const [XP] = useAtom(PlayerXP);
         const cameraRotation = state.camera.rotation;
         // body.current.rotation(0, cameraRotation.y, 0);
         // body.current.rotation(state.camera.rotation);
-        // //console.log(state.camera.rotation);
-        // //console.log(body.current.rotation());
+        // ////console.log(state.camera.rotation);
+        // ////console.log(body.current.rotation());
 
         /** */
 
@@ -373,14 +373,14 @@ const [XP] = useAtom(PlayerXP);
         //offset
         let newdirOffset = directionoffest({ forward, back, left, right });
 
-        // //console.log("newdirection offset ",newdirOffset);   
+        // ////console.log("newdirection offset ",newdirOffset);   
         // const axis = new THREE.Vector3(0, 1, 0);
         //* rotating the model
         rotateQuaternion.setFromAxisAngle(
             rotateangle, AngleYcameraDirection + newdirOffset + Math.PI
         )
-        // //console.log(body.current);
-        // //console.log(AngleYcameraDirection+newdirOffset);
+        // ////console.log(body.current);
+        // ////console.log(AngleYcameraDirection+newdirOffset);
         socket.emit("rotation", [AngleYcameraDirection + newdirOffset]);
 
         body.current.quaternion.rotateTowards(rotateQuaternion, 0.2);
@@ -398,7 +398,7 @@ const [XP] = useAtom(PlayerXP);
         //     setcurrentAnimation("sit");
         // }
         // if (shift) {
-        //     //console.log("Shifttttttttttttttttttttttttt")
+        //     ////console.log("Shifttttttttttttttttttttttttt")
         //     socket.emit('animation', {
         //         animation: "sit"
         //     });
@@ -408,7 +408,7 @@ const [XP] = useAtom(PlayerXP);
         //     });
         // }
 
-        // //console.log(jump);
+        // ////console.log(jump);
 
 
 
@@ -429,7 +429,7 @@ const [XP] = useAtom(PlayerXP);
                 animation: " "
             });
 
-            //console.log("Shift" + shift);
+            ////console.log("Shift" + shift);
             setcurrentAnimation("run")
 
 
@@ -439,13 +439,13 @@ const [XP] = useAtom(PlayerXP);
             velocity = 0;
         }
 
-        // //console.log(walkdirection);
-        // //console.log(walkdirection.x*velocity*delta);
+        // ////console.log(walkdirection);
+        // ////console.log(walkdirection.x*velocity*delta);
 
 
         const movex = walkdirection.x * velocity * delta;
         const movez = walkdirection.z * velocity * delta;
-        // //console.log(movex, movez);
+        // ////console.log(movex, movez);
 
         // -0.03307692307683356 -0.07938461538440045
         socket.emit('position', {
@@ -454,7 +454,7 @@ const [XP] = useAtom(PlayerXP);
             z: body.current.position.z + movez,
         });
         body.current.position.x += movex;
-        body.current.position.y =position[1];
+        body.current.position.y = position[1];
         body.current.position.z += movez;
         // body.current.position.y = position[1];
         socket.emit('delta', {
@@ -463,7 +463,7 @@ const [XP] = useAtom(PlayerXP);
             z: movez,
         });
 
-        //   //console.log(props);
+        //   ////console.log(props);
 
 
 
@@ -500,9 +500,9 @@ const [XP] = useAtom(PlayerXP);
                 fillOpacity={1}
             >
 
-              LVL -  {XP}
+                LVL -  {XP}
 
-            </Text> 
+            </Text>
             <Text
                 scale={[0.1, 0.1, 0.1]}
                 color="#e92dff" // default
@@ -512,12 +512,12 @@ const [XP] = useAtom(PlayerXP);
                 rotation-y={rotation[0]}
                 maxWidth={10}
                 font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
-fillOpacity={1}
+                fillOpacity={1}
             >
 
-                 HuihUI
-               
-            </Text>  
+                HuihUI
+
+            </Text>
 
             <Text
                 scale={[0.1, 0.1, 0.1]}
@@ -528,12 +528,12 @@ fillOpacity={1}
                 rotation-y={rotation[0]}
 
             >
-                
+
                 {socket.id} {" "}
-            </Text>    
-            
-            
-                    <OrbitControls ref={controlsRef} />
+            </Text>
+
+
+            <OrbitControls ref={controlsRef} />
 
             {/* <RigidBody position={[position[0] , position[1], position[2]]} colliders={'cuboid'} friction={0}> */}
             <primitive object={model} scale={0.02} ref={body} position-y={-0.9} castShadow />

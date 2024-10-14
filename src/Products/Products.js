@@ -42,13 +42,13 @@ const Products = () => {
   // Filter items based on search query
   const filteredItems = selectedCategory
     ? productItems.filter(
-        (item) =>
-          item.category === selectedCategory &&
-          item.name.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : productItems.filter((item) =>
+      (item) =>
+        item.category === selectedCategory &&
         item.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+    )
+    : productItems.filter((item) =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   return (
     <>

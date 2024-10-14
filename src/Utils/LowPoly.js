@@ -16,7 +16,7 @@ export function LowPoly(props) {
 
         groupRef.current.rotation.y = props.rot;
     })
-    //console.log("low poly loaded!!!!!!!!!!")
+    ////console.log("low poly loaded!!!!!!!!!!")
     return (
         <group {...props} scale={0.15} dispose={null}>
             <group scale={0.15} ref={groupRef}  >

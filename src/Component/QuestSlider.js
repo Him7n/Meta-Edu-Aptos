@@ -22,24 +22,33 @@ const QuestSlider = () => {
     socket.emit("rejectParticipant", { questId, userId });
   };
   useEffect(() => {
-    socket.on(
-      "questParticipantRequest",
-      ({ questId, questName, userId, username }) => {
-        toast.info(`${username} wants to join your quest "${questName}"!`, {
-          position: "top-right",
+    socket.on("updateQuests", (updatedQuests) => {
+      setQuests(updatedQuests);
+    });
 
-          autoClose: 5000,
+    return () => {
+      socket.off("updateQuests");
+    };
+  }, []);
+  useEffect(() => {
+    // socket.on(
+    //   "questParticipantRequest",
+    //   ({ questId, questName, userId, username }) => {
+    //     toast.info(`${username} wants to join your quest "${questName}"!`, {
+    //       position: "top-right",
 
-          hideProgressBar: false,
+    //       autoClose: 5000,
 
-          closeOnClick: true,
+    //       hideProgressBar: false,
 
-          pauseOnHover: true,
+    //       closeOnClick: true,
 
-          draggable: true,
-        });
-      }
-    );
+    //       pauseOnHover: true,
+
+    //       draggable: true,
+    //     });
+    //   }
+    // );
 
     socket.on("questParticipationApproved", ({ questId, questName }) => {
       toast.success(`You've been approved to join the quest "${questName}"!`);
@@ -52,7 +61,7 @@ const QuestSlider = () => {
     });
 
     return () => {
-      socket.off("questParticipantRequest");
+      // socket.off("questParticipantRequest");
 
       socket.off("questParticipationApproved");
 
@@ -66,7 +75,7 @@ const QuestSlider = () => {
     });
 
     // Request initial quests from the server
-    socket.emit("getQuests");
+    // socket.emit("getQuests");
 
     // Clean up listeners when component unmounts
     return () => {
@@ -181,47 +190,28 @@ const QuestSlider = () => {
                   Accept Quest
                 </button>
               )}
-              { 
-                quest.pendingApprovals &&
-                quest.pendingApprovals.length > 0 && (
-                  <div className="mt-2">
-                    <h4 className="font-bold">Pending Approvals:</h4>
-
-                    {quest.pendingApprovals.map((approval) => (
-                      <div
-                        key={approval.userId}
-                        className="flex-col scale-50 items-center mt-1"
+              {quest.creator.userId === Me.id && quest.pendingApprovals && quest.pendingApprovals.length > 0 && (
+                <div className="mt-2">
+                  <h4 className="font-bold">Pending Approvals:</h4>
+                  {quest.pendingApprovals.map((approval) => (
+                    <div key={approval.userId} className="flex items-center mt-1">
+                      <span>{approval.username}</span>
+                      <button
+                        className="ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-sm"
+                        onClick={() => handleApproveParticipant(quest.questId, approval.userId)}
                       >
-                        <span className="text-xs">{approval.userId}</span>
-                        <div className="flex justify-center items-center">
-                          <button
-                            className="ml-2 bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-sm"
-                            onClick={() =>
-                              handleApproveParticipant(
-                                quest.questId,
-                                approval.userId
-                              )
-                            }
-                          >
-                            Approve
-                          </button>
-
-                          <button
-                            className="ml-2 bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm"
-                            onClick={() =>
-                              handleRejectParticipant(
-                                quest.questId,
-                                approval.userId
-                              )
-                            }
-                          >
-                            Reject
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                        Approve
+                      </button>
+                      <button
+                        className="ml-2 bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-sm"
+                        onClick={() => handleRejectParticipant(quest.questId, approval.userId)}
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </li>
           ))}
         </ul>

@@ -17,8 +17,8 @@ export const P2 = (props) => {
     const bodyRef = useRef();
     const model = useFBX("./assets/character/Character2.fbx")
     const ani = model.animations;
-    //console.log("P2 chala");
-    //console.log(props.aanimations);
+    ////console.log("P2 chala");
+    ////console.log(props.aanimations);
     model.animations[0].name = 'Idle';
     const [currentAnimation, setcurrentAnimation] = useState("Idle")
     const walk = useFBX("./assets/character/running1.fbx");
@@ -57,31 +57,31 @@ export const P2 = (props) => {
 
         let distance = bodyRef.current.position.distanceTo(positvector);
 
-        //console.log(props)
+        ////console.log(props)
         if (props.aanimations == "sit") {
             setcurrentAnimation("sit");
         } else if (distance == 0) {
-            //console.log("OIIIDDLLLEEE")
+            ////console.log("OIIIDDLLLEEE")
             if (currentAnimation != "Idle") {
                 setcurrentAnimation("Idle")
             }
         } else {
-            //console.log(distance);
-            //console.log("walkkk")
+            ////console.log(distance);
+            ////console.log("walkkk")
             if (currentAnimation != "walk") {
                 setcurrentAnimation("walk");
             }
         }
 
 
-        // //console.log(bodyRef.current.position.x, bodyRef.current.position.y);
+        // ////console.log(bodyRef.current.position.x, bodyRef.current.position.y);
 
         bodyRef.current.position.x = props.position[0];
         bodyRef.current.position.y = props.position[1]
         bodyRef.current.position.z = props.position[2]
         const rotationQuaternion = new THREE.Quaternion();
         let rot = props.rotation[0] - Math.PI;
-        //console.log(rot);
+        ////console.log(rot);
         rotationQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), rot);
         bodyRef.current.quaternion.copy(rotationQuaternion);
 

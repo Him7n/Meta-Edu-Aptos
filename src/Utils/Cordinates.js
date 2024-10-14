@@ -23,20 +23,19 @@ const Cordinates = () => {
   const model = useGLTF('./model.gltf');
 
   //----------
-  // //console.log(`my socket id ${socket.id}`);
+  // ////console.log(`my socket id ${socket.id}`);
   const [characters] = useAtom(charactersAtom);
   const [me, setMe] = useAtom(Findme)
-  console.log(characters.length);
+  // console.log(characters.length);
 
 
   characters.map((char) => {
     if (char.id === socket.id) {
-// console.log(char.position);
-// console.log(char.accountAddress)
+      //console.log(char.position);
       setMe(char)
     }
-    // //console.log(char.position);
-    // //console.log(char.delta);
+    // ////console.log(char.position);
+    // ////console.log(char.delta);
 
   })
 

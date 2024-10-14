@@ -3,19 +3,18 @@ import { socket } from '../Socketmanager';
 import { useAtom } from 'jotai';
 import { Findme } from '../Utils/Findme';
 
-const AlertMessage = ({ _socketid,userRole,message }) => {
+const AlertMessage = ({ _socketid, userRole, message }) => {
     // const [userRole,setRole]  = useAtom(Findme)
 
     const HandleResolve = () => {
-        if(userRole!=null){
+        if (userRole != null) {
             if (userRole.role === 'teacher' || userRole.role == 'presenter') {
-                //console.log('Resolving ', _socketid);
                 socket.emit("resolve", _socketid);
             } else {
-                //console.log('Only teachers can resolve doubts.');
+                ////console.log('Only teachers can resolve doubts.');
             }
         }
-       
+
     };
 
     return (
@@ -29,7 +28,7 @@ const AlertMessage = ({ _socketid,userRole,message }) => {
             <div className="text-[11px] font-light max-w-full flex-initial flex flex-row gap-1 align-middle justify-center">
                 <p className='text-[12px] font-semibold'>{_socketid}</p> {message}
             </div>
-            { userRole!=null &&( userRole.role === 'teacher'|| userRole.role == 'presenter' )&& (
+            {userRole != null && (userRole.role === 'teacher' || userRole.role == 'presenter') && (
                 <div className="flex flex-auto flex-row-reverse">
                     <button
                         id='id'

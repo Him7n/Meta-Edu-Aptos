@@ -27,10 +27,9 @@ import ProfileManager from '../Component/ProfileManager.js';
 import MenuConferenceHall from '../Component/MenuConferenceHall.js';
 import QuestMenu from '../Component/QuestMenu.js';
 import QuestNotification from '../Component/QuestNotification.js';
-import ConnectAptos from './ConnectAptos.js';
-import GlobalChat from '../Component/GlobalChat.js';
 import GlobalChatButton from '../Component/GlobalChatButton.js';
-import { SocketManager } from '../Socketmanager.js';
+import ConnectAptos from './ConnectAptos.js';
+import { ModSimulator } from '../Component/ModSimulator.js';
 
 const Loader = ({ onLoaded }) => {
     const { progress, item, loaded, total } = useProgress();
@@ -157,7 +156,7 @@ const Enviroment = () => {
 
     // const response = Authorize(); // Authorization check
     // if (response != null) {
-    //     //console.log("navigate to signup");
+    //     ////console.log("navigate to signup");
     //     // Logic to navigate to signup could be added here, if required
     // }
 
@@ -175,31 +174,29 @@ const Enviroment = () => {
                     { name: 'shift', keys: ['Shift'] },
                 ]}
             >
-                        <SocketManager />
-
                 <ConnectMetamask />
                 <MenuOffice />
                 <MenuClass />
-                <QuestMenu/>
+                <QuestMenu />
                 <ConnectAptos/>
                 <SelectiveRender />
-                <AttendanceManager/>
-                <AskQuestionAlert/>
-                <QuestNotification/>
-                <MenuConferenceHall/>
-                <ProfileManager/>
-                <DoubtPanel/>
+                <AttendanceManager />
+                <AskQuestionAlert />
+                <QuestNotification />
+                <MenuConferenceHall />
+                <ProfileManager />
+                <DoubtPanel />
                 <SelectiveRenderClass />
-                <SelectiveRenderTeacher/>
-                <SelectiveRenderPresenter/>
+                <SelectiveRenderTeacher />
+                <SelectiveRenderPresenter />
+                {/* <ModSimulator/> */}
                 <UpMenu />
-                <AskaiInput/>
+                <AskaiInput />
                 <Sidebar />
                 <Products />
-                <GlobalChatButton/>
-                {/* <GlobalChat/> */}
-                {/* <Showcase/> */}
-                {/* <Cloths/> */}
+                <GlobalChatButton />
+                {/* <Showcase /> */}
+                {/* <Cloths /> */}
                 <VRButton />
                 <Canvas
                     shadows

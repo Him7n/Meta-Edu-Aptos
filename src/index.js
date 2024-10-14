@@ -10,9 +10,9 @@ const root = ReactDOM.createRoot(document.querySelector("#root"));
 const wallets = [new PetraWallet()];
 
 root.render(
-  <StrictMode>
-    <AptosWalletAdapterProvider plugins={wallets} autoConnect={true}>
-      <AppRoutes />
-    </AptosWalletAdapterProvider>{" "}
-  </StrictMode>
+    <StrictMode>
+        <AptosWalletAdapterProvider plugins={wallets} autoConnect={true}>
+            <AppRoutes />
+        </AptosWalletAdapterProvider>{" "}
+    </StrictMode>
 );

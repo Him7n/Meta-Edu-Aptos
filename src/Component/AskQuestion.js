@@ -10,6 +10,7 @@ const AskQuestion = () => {
 
     useEffect(() => {
         socket.on('updateAnswers', (data) => {
+            console.log(data);
             setAnswers(data.answerArray);
         });
 

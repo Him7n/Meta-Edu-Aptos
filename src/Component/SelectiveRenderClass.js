@@ -7,7 +7,7 @@ import OfficeContentbox from './OfficeContentbox'
 const SelectiveRenderClass = () => {
     const [me] = useAtom(Findme)
     const [show, setShow] = useState(false)
-    //console.log(me)
+    ////console.log(me)
     if (me != null) {
 
         if (me.role == 'student') {
@@ -16,7 +16,7 @@ const SelectiveRenderClass = () => {
 
                 setShow(true);
             }
-            //console.log("you are a presentee")
+            ////console.log("you are a presentee")
         } else {
             if (show) {
                 setShow(false);
@@ -31,7 +31,7 @@ const SelectiveRenderClass = () => {
         <>
             {
 
-                show && <Contentbox/>
+                show && <Contentbox />
             }
         </>
 

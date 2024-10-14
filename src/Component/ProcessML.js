@@ -5,7 +5,7 @@ const ProcessML = () => {
     const [path, setPath] = useState("");
     const HandleChange = (e) => {
         setPath(e.target.value);
-        //console.log(path);
+        ////console.log(path);
 
 
     }
@@ -16,11 +16,11 @@ const ProcessML = () => {
             const form = new FormData();
             form.append('file_path', path); // Assuming file is obtained from an input element
             setLoading("Loading...");
-            //console.log("Processing", path);
+            ////console.log("Processing", path);
 
             const response = await axios.post('http://localhost:8000/process_pdf/', form);
 
-            //console.log(response.data.message);
+            ////console.log(response.data.message);
             setLoading("Processing Completed!");
             // Handle the response or update UI as needed
         } catch (error) {
@@ -31,7 +31,7 @@ const ProcessML = () => {
     }
     return (
         <>
-            <Html transform occlude={'blending'} zIndexRange={[10, 1]} position={[-24.65, 1.7, 0]} rotation-y={-(Math.PI/3)*4 }
+            <Html transform occlude={'blending'} zIndexRange={[10, 1]} position={[-24.65, 1.7, 0]} rotation-y={-(Math.PI / 3) * 4}
                 scale={0.2}  >
                 <div className='border-2 bg-cyan-300  flex  flex-col align-middle justify-center  text-center gap-2 p-3 py-1 ' >
 

@@ -6,40 +6,40 @@ import { AIshowatom } from '../Utils/AIshowatom';
 import { TalkAtom } from '../Utils/TalkAtom';
 const AskaiInput = () => {
     const [message, setMessage] = useAtom(AiMessageAtom);
-const [askai] = useAtom(AIshowatom);
-const [talkatom,setTalkAtom] = useAtom(TalkAtom)
-// //console.log(askai)
-    //console.log(message);
+    const [askai] = useAtom(AIshowatom);
+    const [talkatom, setTalkAtom] = useAtom(TalkAtom)
+    // ////console.log(askai)
+    ////console.log(message);
     const [messagee, setMessagee] = useState("");
     const HandleOnchange = (e) => {
         setMessagee(e.target.value)
-        //console.log(message);
+        ////console.log(message);
 
 
     }
     const HandleOnSubmit = async (e) => {
         e.preventDefault(); // Prevent form submission and page reload
         setMessage("Leading..");
-        //console.log("hipjijpo");
+        ////console.log("hipjijpo");
 
         try {
             const form = new FormData();
             form.append('question', messagee); // Assuming file is obtained from an input element
             setMessage("Loading...");
-            // //console.log("Processing", path);
+            // ////console.log("Processing", path);
 
             const response = await axios.post('http://localhost:8000/answer_question/', form);
 
-            //console.log(response.data);
+            ////console.log(response.data);
             const formattedAnswers = response.data.answer.replace(/\n/g, '<br>');
-            //console.log("revert hua")
+            ////console.log("revert hua")
             setTalkAtom(!talkatom);
-            //console.log(talkatom)
+            ////console.log(talkatom)
 
             setMessage(formattedAnswers);
             // Handle the response or update UI as needed
         } catch (error) {
-            const val =talkatom
+            const val = talkatom
             setTalkAtom(!val);
 
             console.error('Error processing PDF:', error);
@@ -58,9 +58,9 @@ const [talkatom,setTalkAtom] = useAtom(TalkAtom)
 
         //         text-white text-[32px] hover:bg-black hover:text-white  mr-3  ' > send </button>
         //     </div >
-<>
-        {askai  && 
-        
+        <>
+            {askai &&
+
                 <div className="w-[25rem] left-[13rem] absolute z-10 bottom-12 mx-auto bg-transparent">
 
                     <form>
@@ -80,10 +80,10 @@ const [talkatom,setTalkAtom] = useAtom(TalkAtom)
 
 
                 </div>
-        
-        }
+
+            }
         </>
-       
+
     )
 }
 

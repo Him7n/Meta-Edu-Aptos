@@ -27,7 +27,7 @@ const QuestNotification = () => {
 
   return (
     <div className="absolute z-50 top-0 scale-50 right-0 m-4">
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };

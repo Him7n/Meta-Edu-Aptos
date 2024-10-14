@@ -4,7 +4,7 @@ import { Html } from "@react-three/drei";
 const RankBoard = () => {
   return (
     <Html
-      position={[35.52754076507434, 3, -39.714341294725028]}
+      position={[37.02754076507434, 3, -39.714341294725028]}
       rotation={[0, 0, 0]}
       scale={0.4}
       transform

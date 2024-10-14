@@ -17,7 +17,7 @@ export const Signup = () => {
   return <div className="signUpBackground h-full flex justify-center ">
     <div className="flex flex-col justify-center align-center">
       <div className="rounded-lg glassCard w-60 text-center h-max px-4">
-        <SubHeading label={"Sign up"} size={"large"}/>
+        <SubHeading label={"Sign up"} size={"large"} />
         {/* <SubHeading label={"Enter your infromation to create an account"} /> */}
         <InputBox onChange={e => {
           setFirstName(e.target.value);
@@ -40,11 +40,11 @@ export const Signup = () => {
                 lastName,
                 password
               });
-              //console.log(response.data);
+              ////console.log(response.data);
               navigate("/Signin")
             } catch (err) {
 
-              //console.log(err)
+              ////console.log(err)
             }
           }} label={"Sign up"} />
         </div>

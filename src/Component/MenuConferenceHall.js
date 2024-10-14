@@ -16,7 +16,7 @@ const MenuConferenceHall = () => {
   useEffect(() => {
     // Listen for updated event list from the server
     socket.on('updateEvents', (newEvents) => {
-      console.log('Received updated events:', newEvents); // Log the updated events
+      //console.log('Received updated events:', newEvents); // Log the updated events
       setEvents(newEvents);
     });
 
@@ -26,12 +26,12 @@ const MenuConferenceHall = () => {
   }, []);
 
   const handleScheduleEvent = () => {
-      const newEvent = { name: eventName, time: eventTime, attendees: [] }; // Include attendees array when creating an event
-      socket.emit('scheduleEvent', newEvent); // Emit the correct event name
-      setEventName('');
-      setEventTime('');
-      setConferenceMenu(false); // Close the event creation form
-    
+    const newEvent = { name: eventName, time: eventTime, attendees: [] }; // Include attendees array when creating an event
+    socket.emit('scheduleEvent', newEvent); // Emit the correct event name
+    setEventName('');
+    setEventTime('');
+    setConferenceMenu(false); // Close the event creation form
+
   };
 
   const handleJoinEvent = (event) => {
@@ -82,7 +82,7 @@ const MenuConferenceHall = () => {
                 onChange={(e) => setEventTime(e.target.value)}
                 className="px-2 py-1 rounded text-black text-xs"
               />
-              <button 
+              <button
                 onClick={handleScheduleEvent}
                 className="px-2 py-1 bg-indigo-600 text-white rounded text-xs hover:bg-indigo-700 transition-colors duration-200"
               >
@@ -94,12 +94,12 @@ const MenuConferenceHall = () => {
           {_conferenceMenu === 'join' && (
             <div className="flex flex-col space-y-2 bg-white bg-opacity-20 p-2 rounded max-h-40 overflow-y-auto text-xs"> {/* Adjusted height and font */}
               {events.map((event, index) => (
-                <button 
-                  key={index} 
+                <button
+                  key={index}
                   onClick={() => handleJoinEvent(event)}
                   className="px-2 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors duration-200 text-xs"
                 >
-                  {event.name} - {event.time} 
+                  {event.name} - {event.time}
                   {event.attendees.length > 0 ? ` (Attendees: ${event.attendees.length})` : ''}
                 </button>
               ))}

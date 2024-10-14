@@ -4,13 +4,13 @@ import { useController } from '@react-three/xr';
 import { useControls } from 'leva'
 import { useEffect } from 'react';
 const Char1 = (props) => {
-    //console.log(props);
+    ////console.log(props);
 
     const character1 = useFBX('./models/Angry.fbx')
     const ani = character1.animations;
     // let aniname = ani.name;
     const animations = useAnimations(ani, character1)
-    //console.log(animations);
+    ////console.log(animations);
     const { animationName } = useControls({
         animationName: { options: animations.names }
     })
@@ -27,8 +27,8 @@ const Char1 = (props) => {
     }, [animationName])
 
 
-    //console.log(animationName);
-    // //console.log(character1);
+    ////console.log(animationName);
+    // ////console.log(character1);
     return (
         <primitive object={character1} scale={0.02}
             position={[props.position[0], props.position[1], props.position[2]]}

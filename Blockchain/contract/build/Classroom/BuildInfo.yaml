@@ -1,0 +1,58 @@
+---
+compiled_package_info:
+  package_name: TodoList
+  address_alias_instantiation:
+    Extensions: "0000000000000000000000000000000000000000000000000000000000000001"
+    aptos_framework: "0000000000000000000000000000000000000000000000000000000000000001"
+    aptos_fungible_asset: 000000000000000000000000000000000000000000000000000000000000000a
+    aptos_std: "0000000000000000000000000000000000000000000000000000000000000001"
+    aptos_token: "0000000000000000000000000000000000000000000000000000000000000003"
+    core_resources: 000000000000000000000000000000000000000000000000000000000a550c18
+    publisher: 003b9e954920aa40cc84631562b431f62b33eb5cea45b0e0be24c3dd79998f12
+    std: "0000000000000000000000000000000000000000000000000000000000000001"
+    vm: "0000000000000000000000000000000000000000000000000000000000000000"
+    vm_reserved: "0000000000000000000000000000000000000000000000000000000000000000"
+  source_digest: 4E9A5A92398C3EB5151B112F1B9B44475133B5699597DB9021A51DE7681E61C9
+  build_flags:
+    dev_mode: false
+    test_mode: false
+    override_std: ~
+    generate_docs: false
+    generate_abis: false
+    generate_move_model: true
+    full_model_generation: false
+    install_dir: ~
+    force_recompilation: false
+    additional_named_addresses:
+      publisher: 003b9e954920aa40cc84631562b431f62b33eb5cea45b0e0be24c3dd79998f12
+    architecture: ~
+    fetch_deps_only: false
+    skip_fetch_latest_git_deps: false
+    compiler_config:
+      bytecode_version: 6
+      known_attributes:
+        - bytecode_instruction
+        - deprecated
+        - event
+        - expected_failure
+        - "fmt::skip"
+        - legacy_entry_fun
+        - "lint::allow_unsafe_randomness"
+        - "lint::skip"
+        - native_interface
+        - randomness
+        - resource_group
+        - resource_group_member
+        - test
+        - test_only
+        - verify_only
+        - view
+      skip_attribute_checks: false
+      compiler_version: ~
+      language_version: ~
+      experiments:
+        - optimize=on
+dependencies:
+  - AptosFramework
+  - AptosStdlib
+  - MoveStdlib

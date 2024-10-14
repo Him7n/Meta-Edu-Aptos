@@ -8,7 +8,7 @@ import UploadConference from './UploadConference'
 const SelectiveRenderInsideTheater = () => {
     const [me] = useAtom(Findme)
     const [show, setShow] = useState(false)
-    //console.log(me)
+    ////console.log(me)
     if (me != null) {
 
         if (me.role == 'presenter') {
@@ -17,7 +17,7 @@ const SelectiveRenderInsideTheater = () => {
 
                 setShow(true);
             }
-            //console.log("you are a presenter")
+            ////console.log("you are a presenter")
         } else {
             if (show) {
                 setShow(false);

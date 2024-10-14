@@ -29,28 +29,34 @@ export default function XrContainer(props) {
     };
     const handleBuyClick = async (currency) => {
         const loadingToast = toast.loading('Please wait...');
-    
+
         try {
-            // Assuming you have access to the account and signAndSubmitTransaction
-            // You might need to pass these as props or get them from a context
-            
-            
-                // Call the burn1 function
-                 burn1(account, signAndSubmitTransaction, currency);
-                // getBalancePerson(account);
+            // Await the burn1 function result and check if it succeeds
+            const isBurnSuccessful = await burn1(account, signAndSubmitTransaction, currency);
+
+            if (isBurnSuccessful) {
+                // Call getBalancePerson when burn1 is successful
+                await getBalancePerson(account);
+
                 setOrderMessage('Order Placed Successfully!');
                 setOrderPlaced(true);
-                toast.success('Order Placed');
+                toast.success('Order Placed Successfully!');
+
+                // Increment XP and show success message for leveling up
                 setXP(xp + 1);
                 toast.success('Leveled UP!');
-       
+            } else {
+                toast.error('Purchase Failed');
+            }
         } catch (error) {
             console.error("Error during purchase:", error);
             toast.error('Purchase Failed');
         } finally {
+            // Dismiss the loading toast in both success and failure cases
             toast.dismiss(loadingToast);
         }
     };
+
     // Function to handle the Buy button click and show toast
     // const handleBuyClick = async (currency) => {
     //     const loadingToast = toast.loading('Please wait...');
@@ -133,14 +139,14 @@ export default function XrContainer(props) {
                                     <span className="mr-1">Rating:</span> {renderStars(props.productInfo.ratings)}
                                 </div>
                                 <div className="mt-4 text-[15px] text-gray-300">
-                                  
+
                                     <p className="mb-1  text-[15px]">
                                         <span className="font-semibold text-[15px]">Price :</span> {props.productInfo.price.coins} 🪙
                                     </p>
                                 </div>
 
                                 <div className="mt-4 flex justify-between">
-                                 
+
                                     <button
                                         onClick={() => handleBuyClick(props.productInfo.price.coins)}
                                         className="px-3 py-1 text-[15px] text-white rounded-sm transition-all border border-white duration-300 flex flex-col items-center"

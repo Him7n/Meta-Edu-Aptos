@@ -13,22 +13,22 @@ export function P5(props) {
     const group = useRef()
     const { nodes, materials, animations } = useGLTF('./assets/character/kim._low_poly_character4.glb')
     const { actions } = useAnimations(animations, group)
-    //console.log(props.rotation);
+    ////console.log(props.rotation);
 
     useFrame((state, delta) => {
 
         //     // colliderRef.current.position = group.current.position;
-        //     // //console.log(colliderRef.current.position);
+        //     // ////console.log(colliderRef.current.position);
         //     // if (character.id === props.findme) {
 
         //     //     state.camera.position.copy(new THREE.Vector3(group.current.position.x, group.current.position.y + 5, group.current.position.z + 6));
         //     //     state.camera.lookAt(new THREE.Vector3(group.current.position.x, group.current.position.y + 2, group.current.position.z));
         //     //     // state.camera.rotation.copy(group.current.position);
         //     // }
-        //     // //console.log(group.current.position);
-        //     // //console.log(props.position);
+        //     // ////console.log(group.current.position);
+        //     // ////console.log(props.position);
 
-        //     // //console.log(group.current.position);
+        //     // ////console.log(group.current.position);
         // group.current.position.x = props.position[0];
         // group.current.position.y = props.position[1];
         // group.current.position.z = props.position[2];
@@ -56,7 +56,7 @@ export function P5(props) {
     return (
         <group {...props} scale={1} position={[props.position[0], props.position[1], props.position[2]]} dispose={null} >
             <group name="Sketchfab_Scene"   >
-                <group name="Sketchfab_model"  rotation={[-Math.PI / 2, 0, 0]} scale={0.019}>
+                <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={0.019}>
                     <group name="d57fd2b855e74e54a6edc716bbcf2e71fbx" rotation={[Math.PI / 2, 0, 0]}>
                         <group name="Object_2">
                             <group name="RootNode">

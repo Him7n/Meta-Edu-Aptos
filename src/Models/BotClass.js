@@ -29,11 +29,11 @@ const BotClass = () => {
         ani.push(idle.animations[0])
         ani.push(greet.animations[0])
     }
-    //console.log("booooooooooooooooooooooooooooooooooooooot")
-    //console.log(talkAtom, talkLocal);
+    ////console.log("booooooooooooooooooooooooooooooooooooooot")
+    ////console.log(talkAtom, talkLocal);
     if (talkAtom != talkLocal) {
         if (currentAnimation != 'talk') {
-            //console.log("huaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            ////console.log("huaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             setcurrentAnimation('talk');
             // const val = talkAtom;
             //  setTalkLocal(!val)

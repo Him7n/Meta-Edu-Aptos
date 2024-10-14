@@ -16,7 +16,7 @@ const ShowModel = ({ url, onClose }) => {
         fetchModel();
     }, []);
 
-    //console.log(model);
+    ////console.log(model);
     const handleShow = () => {
         onClose();
     };
@@ -24,10 +24,11 @@ const ShowModel = ({ url, onClose }) => {
     const handleARButtonClick = () => {
 
 
-        const fetch = async ()=>{ await axios.post('http://localhost:3002/api/v1/user/upload', {
-            path: selectedFile
-        })
-}
+        const fetch = async () => {
+            await axios.post('http://localhost:3002/api/v1/user/upload', {
+                path: selectedFile
+            })
+        }
 
         window.open('http://localhost:5173/', '_blank');
     };

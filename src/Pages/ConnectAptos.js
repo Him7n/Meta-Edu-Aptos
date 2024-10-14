@@ -18,6 +18,7 @@ import { useAtom } from "jotai";
 import { charactersAtom, socket } from "../Socketmanager";
 import { mintfunc, Transfer } from "../Component/AptosFunctions";
 import { CoinsAtom } from "../Utils/CoinsAtom";
+import { TranscCount } from "../Utils/TransCount";
 
 const ConnectAptos = () => {
   const [showTransferMenu, setShowTransferMenu] = useState(false);
@@ -32,7 +33,7 @@ const ConnectAptos = () => {
   const { signAndSubmitTransaction } = useWallet();
   const [coins, setcoins] = useAtom(CoinsAtom);
   const [characters, setchar] = useAtom(charactersAtom);
-
+ const [trans,settrans] = useAtom(TranscCount)
   // Mock data for people (replace with actual data from your application)
 
   const getBalancePerson = async () => {
@@ -149,18 +150,27 @@ const ConnectAptos = () => {
   useEffect(() => {
     if (account && account.address) {
       socket.emit("setAccountAddress", account.address);
+    
+    }
+  }, [trans]);
+  useEffect(() => {
+    if (account) {
       getBalancePerson();
     }
   }, [account]);
-  // useEffect(() => {
-  //   if (account) {
-  //     getBalancePerson();
-  //   }
-  // }, [account]);
   const handleMint = async () => {
     if (account) {
-      mintfunc(account, signAndSubmitTransaction, 1);
-      await getBalancePerson();
+      const isMintSuccessful = await mintfunc(account, signAndSubmitTransaction, 1);
+
+      if (isMintSuccessful) {
+        toast.success("Minting successful!");
+        // settrans(trans+1);
+        // await getBalancePerson(); // Call only when mint is successful
+      } else {
+        toast.error("Minting failed. Please try again.");
+      }
+    } else {
+      toast.error("Account is not available.");
     }
   };
   const handleTransferClick = () => {
@@ -191,7 +201,7 @@ const ConnectAptos = () => {
   };
 
   return (
-    <div className="w-full scale-50 flex-col items-center justify-center bg-green-100/40 absolute z-10">
+    <div className="w-full scale-50 flex-col items-center justify-center bg-green-100/40 absolute z-50">
       <WalletSelector />
 
       <div className="text-xs">{account != null && account.address}</div>
@@ -207,9 +217,9 @@ const ConnectAptos = () => {
 
       <button
         onClick={getBalancePerson}
-        className="bg-blue-500 absolute right-20 top-24 hover:bg-blue-700 text-lg border-none text-white font-bold py-2 px-4 rounded mt-2"
-      >
-        Burn
+        className=" absolute  -right-[10rem] -top-6  text-lg border-none text-black font-bold py-2 px-4  rounded mt-2"
+      > coins  {coins} 🪙
+        
       </button>
 
       <button
@@ -219,9 +229,9 @@ const ConnectAptos = () => {
         Transfer
       </button>
 
-      <div className="absolute text-lg -right-[5rem] -top-1 text-[15px]">
+      {/* <div className="absolute text-lg -right-[5rem] -top-1 text-[15px]">
         {coins} 🪙
-      </div>
+      </div> */}
 
       {showTransferMenu && (
         <div className="fixed inset-0 top-[15rem] left-[5rem] z-[99] bg-black bg-opacity-50 flex items-center justify-center">
@@ -236,11 +246,10 @@ const ConnectAptos = () => {
                   {character.accountAddress != "" && (
                     <li
                       key={character.id}
-                      className={`py-3 px-4 cursor-pointer hover:bg-gray-100 rounded-lg ${
-                        selectedPerson?.id === character.id
+                      className={`py-3 px-4 cursor-pointer hover:bg-gray-100 rounded-lg ${selectedPerson?.id === character.id
                           ? "bg-indigo-100"
                           : ""
-                      }`}
+                        }`}
                       onClick={() => handlePersonClick(character)}
                     >
                       <div className="flex justify-between items-center">

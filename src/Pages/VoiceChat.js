@@ -19,7 +19,7 @@ const VoiceChat = () => {
         myPeer.current = new Peer();
 
         myPeer.current.on('open', id => {
-            //console.log('Peer joined room: ' + id);
+            ////console.log('Peer joined room: ' + id);
         });
 
         navigator.mediaDevices.getUserMedia({ video: false, audio: true }).then(stream => {
@@ -86,12 +86,12 @@ const VoiceChat = () => {
     }
 
     const handleCreateRoom = () => {
-        //console.log('Room created:', roomId);
+        ////console.log('Room created:', roomId);
         // Implement room creation logic here
     };
 
     const handleJoinRoom = () => {
-        //console.log('Joining Room:', roomId);
+        ////console.log('Joining Room:', roomId);
         // Implement join room logic here
     };
 

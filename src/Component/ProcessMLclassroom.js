@@ -5,7 +5,7 @@ const ProcessMLclassroom = () => {
     const [path, setPath] = useState("");
     const HandleChange = (e) => {
         setPath(e.target.value);
-        //console.log(path);
+        ////console.log(path);
 
 
     }
@@ -16,11 +16,11 @@ const ProcessMLclassroom = () => {
             const form = new FormData();
             form.append('file_path', path); // Assuming file is obtained from an input element
             setLoading("Loading...");
-            //console.log("Processing", path);
+            ////console.log("Processing", path);
 
             const response = await axios.post('http://localhost:8000/process_pdf/', form);
 
-            //console.log(response.data.message);
+            ////console.log(response.data.message);
             setLoading("Processing Completed!");
             // Handle the response or update UI as needed
         } catch (error) {

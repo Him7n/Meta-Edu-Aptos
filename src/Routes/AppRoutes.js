@@ -26,7 +26,6 @@ import ConnectMetamask from "../Pages/ConnectMetamask";
 import Landingpage from "../Pages/Landingpage.js";
 import TeacherContentbox from "../Component/TeacherContentbox.js";
 import SelectiveRenderTeacher from "../Component/SelectiveRenderTeacher.js";
-import ConnectAptos from "../Pages/ConnectAptos.js";
 
 const AppRoutes = () => {
   return (
@@ -39,8 +38,7 @@ const AppRoutes = () => {
                     <Route element={<AskaiInput/>} path='/ai' />
                     <Route element={<ProcessML />} path='/sc' />
                     <Route element={<ConnectMetamask />} path='/mc' /> */}
-          {/* <Route element={<SelectiveRenderTeacher />} path='/test' />  */}
-          {/* <Route element={<ConnectAptos/>} path="/ct" /> */}
+          <Route element={<SelectiveRenderTeacher />} path='/test' /> 
           <Route element={<Landingpage />} path="/" />{" "}
           <Route path="/signup" element={<Signup />} />
           <Route element={<Enviroment />} path="/verse" />

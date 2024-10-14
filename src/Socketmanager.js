@@ -10,13 +10,13 @@ export const SocketManager = () => {
   const [_characters, setCharacters] = useAtom(charactersAtom);
   useEffect(() => {
     function onConnect() {
-      //console.log("Connected");
+      ////console.log("Connected");
     }
     function onDisconnect() {
-      //console.log("Disconnected");
+      ////console.log("Disconnected");
     }
     function Spawner(data) {
-      //console.log("Spawned");
+      ////console.log("Spawned");
       setCharacters(data);
     }
 

@@ -9,8 +9,8 @@ const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
   const [ARSupported, setARSupported] = useState(false);
   const [annotate, setAnnotate] = useState(false);
   const [isInWishlist, setIsInWishlist] = useState(false);
-  
-  
+
+
   let modelViewer1 = {
     backgroundColor: " #ecf0f3",
     overflowX: "hidden",
@@ -19,14 +19,14 @@ const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
     height: ARSupported ? "85%" : "75%",
     borderRadius: 15,
   };
-  
+
   // Accessing product for full screen start
   const model = useRef();
 
   // Accessing varient selections element
   const varient = useRef(null);
 
-  //console.log(item)
+  ////console.log(item)
 
   function toggle() {
     if (!document.fullscreenElement) {
@@ -60,41 +60,40 @@ const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
     // set up event listeners
     const modelViewer = model.current
     modelViewer &&
-    modelViewer.addEventListener('load', () => {
-      //console.log('loaded')
-      const availableVariants = modelViewer?.availableVariants;
-      //console.log(availableVariants)
-      for (const variant of availableVariants) {
-        const option = document.createElement('option');
-        option.value = variant;
-        option.textContent = variant;
-        varient?.current?.appendChild(option);
-      }
+      modelViewer.addEventListener('load', () => {
+        ////console.log('loaded')
+        const availableVariants = modelViewer?.availableVariants;
+        ////console.log(availableVariants)
+        for (const variant of availableVariants) {
+          const option = document.createElement('option');
+          option.value = variant;
+          option.textContent = variant;
+          varient?.current?.appendChild(option);
+        }
 
-      // Adding a default option
-      const defaultOption = document.createElement('option');
-      defaultOption.value = 'Default';
-      defaultOption.textContent = 'Default';
-      varient?.current?.appendChild(defaultOption);
-    });
+        // Adding a default option
+        const defaultOption = document.createElement('option');
+        defaultOption.value = 'Default';
+        defaultOption.textContent = 'Default';
+        varient?.current?.appendChild(defaultOption);
+      });
 
     varient?.current?.addEventListener('input', (event) => {
       modelViewer.variantName = event.target.value === 'Default' ? null : event.target.value;
     });
   }, []);
-   
+
   useEffect(() => {
-    if(wishlist){
-    const isInWishlist = wishlist.some((wishlistItem) => wishlistItem.id === item.id);
-    setIsInWishlist(isInWishlist);
+    if (wishlist) {
+      const isInWishlist = wishlist.some((wishlistItem) => wishlistItem.id === item.id);
+      setIsInWishlist(isInWishlist);
     }
   }, [item, wishlist]);
   const handleAddToWishlist = () => {
     if (isInWishlist) {
       removeFromWishlist(item.id);
-    } 
-    else 
-    {
+    }
+    else {
       addToWishlist(item);
     }
   };
@@ -141,7 +140,7 @@ const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
             </button>
           </>
         )}
-        
+
         <button className="annotate-btn" onClick={() => setAnnotate((prevState) => !prevState)}>
           i
         </button>
@@ -161,13 +160,13 @@ const ModelViewer = ({ item, addToWishlist, removeFromWishlist, wishlist }) => {
             <div class="HotspotAnnotation">{annotate.title}</div>
           </button>
         ))}
-        
+
         <div class="controls variant_div">
           <select ref={varient} id="variant"></select>
         </div>
 
       </model-viewer>
-        
+
       <LazyLoad>
         {/* Card content below the model-viewer */}
         <div className="qr-sec">

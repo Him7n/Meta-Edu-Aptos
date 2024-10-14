@@ -38,7 +38,7 @@ export const useBuyItem = () => {
 
             const tx = await contract.checkTicket(ticketId, { gasLimit: 5000000 });
             await tx.wait();
-            //console.log("Item purchased successfully.");
+            ////console.log("Item purchased successfully.");
             return true;
         } catch (error) {
             console.error("Error purchasing item:", error);

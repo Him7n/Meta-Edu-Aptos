@@ -15,7 +15,7 @@ const SessionList = () => {
 
   const handleMint = () => {
     // Implement minting logic here
-    //console.log(`Minting for ${selectedCharacter.id} with info: ${mintInfo}`);
+    ////console.log(`Minting for ${selectedCharacter.id} with info: ${mintInfo}`);
     setSelectedCharacter(null);
     setMintInfo("");
   };
@@ -27,8 +27,8 @@ const SessionList = () => {
       </h2>
       <ul className="divide-y divide-gray-200 bg-white/60 shadow rounded-lg">
         {characters.map((character) => (
-          <li 
-            key={character.id} 
+          <li
+            key={character.id}
             className="py-3 px-4 cursor-pointer hover:bg-gray-100 rounded-lg "
             onClick={() => handleCharacterClick(character)}
           >

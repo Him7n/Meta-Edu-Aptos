@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 
 const AttendanceTaker = () => {
   const [characters] = useAtom(charactersAtom);
-console.log(characters)
+  console.log(characters)
   const handleTakeAttendance = () => {
     //console.log("Taking attendance");
 
@@ -28,18 +28,17 @@ console.log(characters)
         <ul className="divide-y divide-gray-200 bg-white/60 shadow rounded-lg">
           {characters.map((character) => (
             <>
-              {character.role !=" " && (
+              { (
                 <li
                   key={character.id}
                   className="py-3 px-4 flex justify-between items-center"
                 >
                   <span className="font-xs text-gray-700">{character.id}</span>
                   <span
-                    className={`px-3 py-1 rounded-full text-xs ${
-                      character.present
+                    className={`px-3 py-1 rounded-full text-xs ${character.present
                         ? "bg-green-100 text-green-800"
                         : "bg-red-100 text-red-800"
-                    }`}
+                      }`}
                   >
                     {character.present ? "Present" : "Absent"}
                   </span>

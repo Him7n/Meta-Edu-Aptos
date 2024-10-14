@@ -11,7 +11,7 @@ const AssignmentCreator = () => {
     const handleDueDateChange = (e) => setDueDate(e.target.value);
 
     const handleSubmit = () => {
-        //console.log(title, description, dueDate);
+        ////console.log(title, description, dueDate);
         socket.emit("assignment", { title, description, dueDate });
     };
 

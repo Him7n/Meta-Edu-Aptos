@@ -8,7 +8,7 @@ import { TicketBuyMenuatom } from '../Utils/TicketBuyMenuatom';
 import { TicketCheckatom } from '../Utils/TicketCheckatom';
 const axios = require("axios");
 const FormData = require("form-data");
-    function ConnectMetamask() {
+function ConnectMetamask() {
 
 
     // https://lime-adjacent-gamefowl-120.mypinata.cloud/ipfs/
@@ -45,7 +45,7 @@ const FormData = require("form-data");
                     },
                 }
             );
-            //console.log("File uploaded to IPFS:", res.data);
+            ////console.log("File uploaded to IPFS:", res.data);
 
             const metadataObj = {
                 BuyerAddress: myaddress,
@@ -69,7 +69,7 @@ const FormData = require("form-data");
                         },
                     }
                 );
-                //console.log("Metadata pinned to IPFS:", metadataRes.data);
+                ////console.log("Metadata pinned to IPFS:", metadataRes.data);
                 return metadataRes.data.IpfsHash
 
             } catch (error) {
@@ -104,7 +104,7 @@ const FormData = require("form-data");
     const [popupMessage, setPopupMessage] = useState(null);
 
     const [buyAmount, setBuyAmount] = useState('0.00000001');
-    //console.log(userTickets)
+    ////console.log(userTickets)
     useEffect(() => {
         async function init() {
             if (window.ethereum) {
@@ -144,15 +144,15 @@ const FormData = require("form-data");
         const baseURI = "https://copper-gigantic-anaconda-230.mypinata.cloud/ipfs/"
         const IpfsHash = await pinFileToIPFS(1, metamaskId);
         const tokenURI = `${baseURI}${IpfsHash}`;
-//console.log(tokenURI)
+        ////console.log(tokenURI)
         const value = ethers.utils.parseEther(buyAmount.toString());
         try {
             // const tx = await contract.buyTicket(tokenURI, { value: value });
             const tx = await contract.buyTicket(tokenURI, { value: value });
             await tx.wait();
-            //console.log(tx);
+            ////console.log(tx);
             fetchContractData(contract);
-            //console.log(userTickets)
+            ////console.log(userTickets)
 
             setTicketId(userTickets[0]);
         } catch (error) {
@@ -198,8 +198,8 @@ const FormData = require("form-data");
         const tx = await contract.getOwnedTickets();
         // await tx.wait();
         setTicketId(tx[0]);
-        //console.log(tx.length);
-        //console.log(tx.toString()); //
+        ////console.log(tx.length);
+        ////console.log(tx.toString()); //
     }
 
     const hitme2 = async (ticketId) => {
@@ -207,7 +207,7 @@ const FormData = require("form-data");
             const tx = await contract.checkTicket(ticketId, { gasLimit: 5000000 }); // Adjust the gas limit as needed
 
             const receipt = await tx.wait();
-            //console.log(receipt);
+            ////console.log(receipt);
             // Parse the receipt for transaction status and other details
             return true; // Return the result of the transaction
         } catch (error) {
@@ -217,18 +217,18 @@ const FormData = require("form-data");
 
 
     }
-const BuyItem = async () => {
-    const result = await hitme2(ticketId.toString());
-    if(result) return true;
-    else return false;
-}
+    const BuyItem = async () => {
+        const result = await hitme2(ticketId.toString());
+        if (result) return true;
+        else return false;
+    }
 
 
-   const CheckTicketHandle = async () => {
+    const CheckTicketHandle = async () => {
         const result = await hitme2(ticketId.toString());
         if (result) {
             setPopupMessage('You can enter');
-            //console.log("YOU CAN ENTER")
+            ////console.log("YOU CAN ENTER")
             setScreen(true);
         } else {
             setPopupMessage('YOU ARE NOT AuTHOrised');
@@ -238,7 +238,6 @@ const BuyItem = async () => {
         }, 3000);
         fetchContractData(contract);
     }
-    
 
 
     return (<>
@@ -258,11 +257,8 @@ const BuyItem = async () => {
                 BuyTicket
             </button>}
 
-            <div className=' absolute bottom-[9rem] w-[10vw] left-[18rem] text-[15px]' >  Coins {userTickets.length + 5} 🪙</div>
-            <div className=' text-[10px] right-[8rem] absolute bottom-[9rem]' >
-                {metamaskId}
-
-            </div>
+            {/* <div className=' absolute bottom-[9rem] w-[10vw] left-[18rem] text-[15px]' >  Coins {userTickets.length + 5} 🪙</div> */}
+         
         </div>
 
         {/* <div className="App">

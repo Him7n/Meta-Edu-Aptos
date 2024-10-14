@@ -23,9 +23,9 @@ const UploadOfficeMaterial = () => {
     };
 
     const handleSubmit = async () => {
-        //console.log("Title:", title);
-        //console.log("Link:", link);
-        //console.log("File:", file);
+        ////console.log("Title:", title);
+        ////console.log("Link:", link);
+        ////console.log("File:", file);
 
         // Add code to handle form submission (e.g., send data to backend)
         setLoad(true);
@@ -36,10 +36,10 @@ const UploadOfficeMaterial = () => {
         })
         setstatus("Posted")
         const name = response.data.filename;
-        //console.log(name[0])
-        //console.log("hihi")
+        ////console.log(name[0])
+        ////console.log("hihi")
         const url = "http://localhost:3002/" + name[0];
-        //console.log(url);
+        ////console.log(url);
         socket.emit("material", {
 
             title: title,

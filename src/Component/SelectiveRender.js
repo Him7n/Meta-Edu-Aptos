@@ -7,7 +7,7 @@ import OfficeContentbox from './OfficeContentbox'
 const SelectiveRender = () => {
     const [me] = useAtom(Findme)
     const [show, setShow] = useState(false)
-    //console.log(me)
+    ////console.log(me)
     if (me != null) {
 
         if (me.role == 'presentee') {
@@ -16,8 +16,8 @@ const SelectiveRender = () => {
 
                 setShow(true);
             }
-            //console.log("you are a presentee")
-        } else  {
+            ////console.log("you are a presentee")
+        } else {
             if (show) {
                 setShow(false);
             }

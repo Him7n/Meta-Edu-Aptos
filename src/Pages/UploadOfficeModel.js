@@ -22,9 +22,9 @@ const UploadOfficeModel = () => {
     };
 
     const handleSubmit = async () => {
-        //console.log("Title:", title);
-        //console.log("Link:", link);
-        //console.log("File:", file);
+        ////console.log("Title:", title);
+        ////console.log("Link:", link);
+        ////console.log("File:", file);
         setLoad(true);
         setstatus("Loading...")
         const response = await axios.post('http://localhost:3002/api/v1/user/upload', {
@@ -32,12 +32,12 @@ const UploadOfficeModel = () => {
 
         })
         setstatus("Posted")
-        //console.log(response.data.filename)
+        ////console.log(response.data.filename)
         const name = response.data.filename;
-        //console.log(name[0])
-        //console.log("hihi")
+        ////console.log(name[0])
+        ////console.log("hihi")
         const url = "http://localhost:3002/" + name[0];
-        //console.log(url);
+        ////console.log(url);
         socket.emit('model', {
             title: title,
             link: url

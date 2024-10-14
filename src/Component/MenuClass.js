@@ -107,7 +107,7 @@ const MenuClass = () => {
                                 onChange={(e) => setClassTime(e.target.value)}
                                 className="px-2 py-1 rounded text-black text-xs"
                             />
-                            <button 
+                            <button
                                 onClick={handleCreateClass}
                                 className="px-2 py-1 bg-indigo-600 text-white rounded text-xs hover:bg-indigo-700 transition-colors duration-200"
                             >
@@ -119,12 +119,12 @@ const MenuClass = () => {
                     {_classMenu === 'join' && (
                         <div className="flex flex-col space-y-2 bg-white bg-opacity-20 p-2 rounded max-h-40 overflow-y-auto text-xs">
                             {classes.map((classItem, index) => (
-                                <button 
-                                    key={index} 
+                                <button
+                                    key={index}
                                     onClick={() => handleJoinClass(classItem)}
                                     className="px-2 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors duration-200 text-xs"
                                 >
-                                    {classItem.name} - {classItem.time} 
+                                    {classItem.name} - {classItem.time}
                                     {classItem.attendees.length > 0 ? ` (Attendees: ${classItem.attendees.length})` : ''}
                                 </button>
                             ))}

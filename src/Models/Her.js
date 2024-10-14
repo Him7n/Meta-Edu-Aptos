@@ -12,22 +12,22 @@ export function Her(props) {
   const { scene, animations } = useGLTF("./model(1).gltf");
   const { actions } = useAnimations(animations, group);
   const { nodes, materials } = useGLTF("/model(1).gltf");
-  // //console.log(props.position[0]);
+  // ////console.log(props.position[0]);
 
   useFrame((state, delta) => {
 
     // colliderRef.current.position = group.current.position;
-    // //console.log(colliderRef.current.position);
+    // ////console.log(colliderRef.current.position);
     // if (character.id === props.findme) {
 
     //     state.camera.position.copy(new THREE.Vector3(group.current.position.x, group.current.position.y + 5, group.current.position.z + 6));
     //     state.camera.lookAt(new THREE.Vector3(group.current.position.x, group.current.position.y + 2, group.current.position.z));
     //     // state.camera.rotation.copy(group.current.position);
     // }
-    // //console.log(group.current.position);
-    // //console.log(props.position);
+    // ////console.log(group.current.position);
+    // ////console.log(props.position);
 
-    // //console.log(group.current.position);
+    // ////console.log(group.current.position);
     group.current.position.x = props.position[0];
     group.current.position.y = props.position[1];
     group.current.position.z = props.position[2];

@@ -19,12 +19,12 @@ export const Signin = () => {
       password: password
     })
     if (response.data.token) {
-      //console.log(response.data);
+      ////console.log(response.data);
 
       localStorage.setItem("token", response.data.token);
       navigate("/verse")
     } else {
-      //console.log(response.data.message);
+      ////console.log(response.data.message);
       navigate("/Signin")
     }
 

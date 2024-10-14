@@ -15,10 +15,10 @@ const Upload = () => {
         // Perform upload logic here using selectedFile
 
         if (selectedFile) {
-            //console.log('Uploading file', selectedFile);
+            ////console.log('Uploading file', selectedFile);
             // Example: uploadFile(selectedFile);   
         } else {
-            //console.log('No file selected.');
+            ////console.log('No file selected.');
         }
 
 
@@ -26,7 +26,7 @@ const Upload = () => {
             path: selectedFile
         })
 
-        //console.log(response.data.outputFilePath);
+        ////console.log(response.data.outputFilePath);
     };
     return (
         <div className='w-auto py-4 h-auto font-sans text-[10px] border-gray-800 border-[1px] px-6  gap-4 text-center flex flex-col bg-cyan-400/45 backdrop-blur-sm    '>

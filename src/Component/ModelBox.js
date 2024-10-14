@@ -42,7 +42,7 @@ const ModelBox = () => {
 
     const handleViewMaterial = (url) => {
         setLink(url);
-        //console.log(url)
+        ////console.log(url)
         setShowModel(true);
     };
 

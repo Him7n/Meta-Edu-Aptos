@@ -41,7 +41,7 @@ const UploadAssignment = () => {
 
     const handleSubmit = () => {
 
-        //console.log(title, discription, dueDate)
+        ////console.log(title, discription, dueDate)
         // Handle form submission (e.g., send data to backend)
         socket.emit("assignment", {
 
@@ -51,7 +51,7 @@ const UploadAssignment = () => {
         });
 
 
-        //console.log("Submitting form data:", { dueDate });
+        ////console.log("Submitting form data:", { dueDate });
     };
 
     return (

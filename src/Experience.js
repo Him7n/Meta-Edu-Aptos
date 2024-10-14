@@ -83,10 +83,11 @@ import MenuConferenceHall from "./Component/MenuConferenceHall.js";
 import DistancetoConferenceHall from "./Component/DistancetoConferenceHall.js";
 import { ConferenceAtom } from "./Utils/ConferenceAtom.js";
 import { QuestMenuAtom } from "./Utils/QuestMenuAtom.js";
-import NewsIframe from "./Component/NewsIframe.js";
 import MusicIframe from "./Component/MusicIFrame.js";
 import RankBoard from "./Component/RankBoard.js";
 import { ModSimulator } from "./Component/ModSimulator.js";
+import NewsIframe from "./Component/NewsIframe.js";
+
 THREE.ColorManagement.legacyMode = false;
 
 export default function Experience() {
@@ -119,7 +120,7 @@ export default function Experience() {
     ]);
 
   // if (xr.isPresenting) {
-  //     //console.log("XRRR is already present")
+  //     ////console.log("XRRR is already present")
   //     // Update camera position in VR mode
   //     camera.position.set(character.position[0], character.position[1], character.position[2]); // Set the desired position
   //     camera.updateMatrixWorld(); // Update the camera's world matrix
@@ -168,13 +169,13 @@ export default function Experience() {
   }
   const schoolDistance = Distanceto(SchoolTarget);
   if (schoolDistance) {
-    // //console.log("class reached");
-    // //console.log(_classMenu);
+    // ////console.log("class reached");
+    // ////console.log(_classMenu);
     if (!_classMenu) {
       setClassMenu(true);
     }
   } else {
-    // //console.log("class not reached");
+    // ////console.log("class not reached");
     if (_classMenu) {
       setClassMenu(false);
     }
@@ -192,24 +193,24 @@ export default function Experience() {
     if (!questMenu) {
       // setConferenceHallMenu(true);
       setquestMenu(true);
-      //console.log("hallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
+      ////console.log("hallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
     }
   } else {
     if (questMenu) {
       // setConferenceHallMenu(false);
       setquestMenu(false);
-      //console.log("nohallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
+      ////console.log("nohallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
     }
   }
   if (isNearConferenceHallMenu) {
     if (!_conferenceHallMenu) {
       setConferenceHallMenu(true);
-      //console.log("hallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
+      ////console.log("hallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
     }
   } else {
     if (_conferenceHallMenu) {
       setConferenceHallMenu(false);
-      //console.log("nohallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
+      ////console.log("nohallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll")
     }
   }
   if (arewethereyet) {
@@ -245,9 +246,9 @@ export default function Experience() {
     }
   }
   //
-  // //console.log(`my socket id ${socket.id}`)
-  // //console.log(characters);
-  // //console.log(characters.length);
+  // ////console.log(`my socket id ${socket.id}`)
+  // ////console.log(characters);
+  // ////console.log(characters.length);
 
   const UP = Distanceto(upTarget);
   if (UP) {
@@ -278,7 +279,6 @@ export default function Experience() {
         {/* <Player/> */}
         <mesh castShadow position={[30, 1, -138]} scale={1.5}>
           <boxGeometry />
-
           <meshStandardMaterial color="mediumpurple" />
         </mesh>
         {/* <MenuConferenceHall /> */}
@@ -400,7 +400,7 @@ export default function Experience() {
             // maxDepthThreshold={1.4}
             color="#898989"
             metalness={1}
-            // Offsets the virtual camera that projects the reflection. Useful when the reflective surface is some distance from the object's origin (default = 0)
+          // Offsets the virtual camera that projects the reflection. Useful when the reflective surface is some distance from the object's origin (default = 0)
           />
         </mesh>
         <mesh
@@ -467,16 +467,7 @@ export default function Experience() {
           <planeGeometry />
           <meshNormalMaterial />
         </mesh>
-        {/* MOD Simulator */}
-        <mesh
-          position={[69.09446812858943, -0.9, 69.54155750089913]}
-          rotation={[-Math.PI / 2, 0, 0]}
-        >
-          <planeGeometry args={[0.5, 0.5]} />
-          <meshBasicMaterial color="violet"  />
-        </mesh>
         <Office />
-        {/* <ModSimulator/> */}
         <Venue />
         <VenueFile />
         <ProcessML />
@@ -490,6 +481,8 @@ export default function Experience() {
         <Cinema />
         <TicketBooth />
         <TheatreStage />
+        {/* <ModSimulator/> */}
+        <NewsIframe/>
         <WhiteRoom />
         <Gate1 />
         <Gate2 />
@@ -499,6 +492,11 @@ export default function Experience() {
         <Gate6 />
         <Gate7 />
         <Market />
+        <MusicIframe/>
+        <RankBoard/>
+        {/* <NewsIframe/>
+        <MusicIframe/>
+        <RankBoard/> */}
         {/* uncomment store 2 */}
         {/* <Store2 /> */}
         <StoreGuy />
@@ -508,14 +506,12 @@ export default function Experience() {
         <Classroom />
         {/* <Mannequinn /> */}
         {/* <Presentationiframe / */}
-        <NewsIframe />
-        <MusicIframe />
-        <RankBoard />
         <Banner />
         <FileSchool />
-        <Podium />
-        {/* <Billboard /> */}
+        {/* <Podium /> */}
+        <Billboard />
         {/* <primitive object={wilow} scale={1} /> */}
+        {/* <SocketManager /> */}
         {/* <VoiceChat/> */}
         {/* <Player2/> */}
       </Physics>

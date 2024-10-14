@@ -53,29 +53,29 @@ export const P4 = (props) => {
 
         let distance = bodyRef.current.position.distanceTo(positvector);
 
-        //console.log(props)
+        ////console.log(props)
         if (distance == 0) {
-            //console.log("OIIIDDLLLEEE")
+            ////console.log("OIIIDDLLLEEE")
             if (currentAnimation == "walk") {
                 setcurrentAnimation("Idle")
             }
         } else {
-            //console.log(distance);
-            //console.log("walkkk")
+            ////console.log(distance);
+            ////console.log("walkkk")
             if (currentAnimation == "Idle") {
                 setcurrentAnimation("walk");
             }
         }
 
 
-        // //console.log(bodyRef.current.position.x, bodyRef.current.position.y);
+        // ////console.log(bodyRef.current.position.x, bodyRef.current.position.y);
 
         bodyRef.current.position.x = props.position[0];
         bodyRef.current.position.y = props.position[1]
         bodyRef.current.position.z = props.position[2]
         const rotationQuaternion = new THREE.Quaternion();
         let rot = props.rotation[0] - Math.PI;
-        //console.log(rot);
+        ////console.log(rot);
         rotationQuaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), rot);
         bodyRef.current.quaternion.copy(rotationQuaternion);
 

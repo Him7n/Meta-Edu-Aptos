@@ -73,37 +73,8 @@ The Blockchain-Powered Theater offers a unique cinema experience where tickets a
 ## Contributions
 We welcome contributions from developers, designers, and creators to enhance the functionality and user experience of Meta-AR-VR.ai. Please refer to our contribution guidelines for more information.
 
-## Images
 
-![image1](./images/ImageMeeting.png) 
 
-![image1](./images/ImageMeeting1.png)
-
-![image1](./images/Meeting2.png)
-
-![image1](./images/Meeting4.png)
-
-![image1](./images/Chatbot3.png)
-
-![image1](./images/Chatbot4.png)
-
-![image1](./images/AR.png)
-
-![image1](./images/VR.png)
-
-![image1](./images/ImageConfrence1.png)
-
-![image1](./images/ImageConference2.png)
-
-![image1](./images/ImageClass1.png)
-
-![image1](./images/Class2.png)
-
-![image1](./images/Class3.png)
-
-![image1](./images/ImageTheater1.png)
-
-![image1](./images/Theater2.png)
 
 ## video
 ![Youtube Walkthrough Video](https://www.youtube.com/watch?v=nwlWtFL1Gkg)

@@ -7,6 +7,9 @@
 Welcome to **Meta-Edu-Aptos**, an innovative 3D Metaverse platform that redefines virtual learning and education. This platform offers immersive classrooms where students can engage with course materials, complete assignments, and participate in interactive quests, all within a virtual environment. By leveraging **Aptos blockchain technology** and the **Move programming language**, Meta-Edu-Aptos rewards students with tokens and mints NFTs based on their achievements, thereby creating a dynamic learning experience.
 
 Our goal is to break down geographical barriers and provide accessible, engaging, and interactive educational experiences for students worldwide. With features that support real-time collaboration, immersive learning environments, and blockchain-driven rewards, this platform is designed for the future of education.
+In Meta-Edu-Aptos, learning goes beyond traditional methods—it's engaging, fun, and rewarding. By completing interactive quests, students can climb up the leaderboard, earn XP points, and unlock exclusive rewards. The more you achieve, the more you advance!
+
+With blockchain-powered tokens earned through your accomplishments, you can purchase in-game assets, customize your virtual experience, and enhance your learning environment. Meta-Edu-Aptos combines education and entertainment, making learning exciting as you progress through quests, gain recognition, and compete with peers. Education has never been this fun or rewarding!
 
 ## Table of Contents
 
@@ -111,7 +114,7 @@ Before running the project, ensure you have the following installed:
 
 1. **Clone the Repository:**
     bash
-    git clone https://github.com/yourusername/meta-edu-aptos.git
+    git clone https://github.com/Him7n/Meta-Edu-Aptos.git
     cd meta-edu-aptos
     
 
@@ -153,9 +156,7 @@ We welcome contributions from developers, designers, and educators to enhance th
 
 Meta-Edu-Aptos is licensed under the MIT License. See the LICENSE file for details.
 
-## Contact
 
-For any inquiries or support, please contact the development team at [support@meta-edu-aptos.com](mailto:support@meta-edu-aptos.com).
 
 ## Acknowledgments
 

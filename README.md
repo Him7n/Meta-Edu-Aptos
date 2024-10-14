@@ -1,4 +1,3 @@
-
 # Meta-Edu-Aptos
 
 ## Introduction
@@ -24,6 +23,7 @@ Our mission is to break down geographical barriers and provide an accessible, in
 ## Tech Stack
 
 Meta-Edu-Aptos is built using a diverse range of technologies:
+
 - **Three.js** for 3D rendering.
 - **React** for dynamic UIs.
 - **Langchain** for real-time conversational AI.
@@ -40,11 +40,36 @@ Meta-Edu-Aptos is built using a diverse range of technologies:
 
 ---
 
+## Images
+
+![image1](./images/image1.jpeg)
+
+![image1](./images/image2.jpeg)
+
+![image1](./images/Meeting2.png)
+
+![image1](./images/Meeting4.png)
+
+![image1](./images/AR.png)
+
+![image1](./images/VR.png)
+
+![image1](./images/ImageConfrence1.png)
+
+![image1](./images/image3.jpeg)
+
+![image1](./images/image4.jpeg)
+
+![image1](./images/image5.jpeg)
+
+![image1](./images/ImageTheater1.png)
+
 ## How to Run the Project
 
 ### Prerequisites
 
 Ensure that the following are installed:
+
 - **Node.js**: Required to run server-side JavaScript.
 - **Python 3.x**: For backend services.
 - **MongoDB**: Database for managing user data and course materials.
@@ -57,33 +82,28 @@ Ensure that the following are installed:
    bash
    git clone https://github.com/yourusername/meta-edu-aptos.git
    cd meta-edu-aptos
-   
 
 2. **Run Backend Services**:
-    - **Start the Socket.io server**:
-    bash
-    node socket-server.js
-    
 
-    - **Start the Langchain service**:
-    bash
-    python app.py
-    
+   - **Start the Socket.io server**:
+     bash
+     node socket-server.js
 
-    - **Start the main backend server**:
-    bash
-    nodemon index.js
-    
+   - **Start the Langchain service**:
+     bash
+     python app.py
+
+   - **Start the main backend server**:
+     bash
+     nodemon index.js
 
 3. **Run AR Server** (Note: AR functionality depends on PC compatibility):
    bash
    npx vite --host
-   
 
 4. **Run the Frontend**:
    bash
    npm run dev
-   
 
 ## Blockchain Functionalities
 
@@ -109,5 +129,3 @@ For more details, refer to the `CONTRIBUTING.md` file.
 ## License
 
 Meta-Edu-Aptos is licensed under the MIT License. For more details, see the `LICENSE` file.
-
-

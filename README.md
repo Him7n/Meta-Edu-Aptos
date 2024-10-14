@@ -1,96 +1,113 @@
-# Meta-AR-VR.ai
+
+# Meta-Edu-Aptos
 
 ## Introduction
-Welcome to Meta-AR-VR.ai, an innovative 3D Metaverse that redefines virtual interactions, conferences, education, and social connectivity. Our platform offers a comprehensive solution for smaller startups and companies seeking to conduct meetings and conferences in a virtual environment, eliminating the need for physical office spaces or conference halls. Meta-AR-VR.ai fosters seamless connections among users, regardless of geographical distances, offering an unparalleled blend of functionality and immersive experiences.
 
-At the heart of Meta-AR-VR.ai lies its advanced features, including a state-of-the-art LLM-powered chatbot that interacts with users through lifelike speech. This chatbot can parse PDF information and provide real-time assistance, enriching the user experience with personalized support. Additionally, everything within the platform is VR-enabled, with audio chat functionality enhancing communication and collaboration.
+Welcome to **Meta-Edu-Aptos**, a 3D Metaverse platform designed to enhance education through immersive virtual environments. The platform allows students to interact with course materials, complete assignments, and participate in quests—all within a dynamic and engaging virtual space. Using **Aptos blockchain technology** and the **Move programming language**, Meta-Edu-Aptos rewards students with tokens and allows them to mint NFTs based on their academic achievements, creating a gamified learning experience.
 
-One of the standout features of Meta-AR-VR.ai is its Virtual Classroom, which revolutionizes online education by providing an interactive 3D learning environment. Students engage with course materials, assignments, and 3D models alongside virtual avatars and educators. Furthermore, a Homework-Helping LLM-powered chatbot augments the learning process, offering personalized assistance with assignments and course materials.
+Our mission is to break down geographical barriers and provide an accessible, interactive, and global learning environment.
 
-Moreover, Meta-AR-VR.ai features a Blockchain-Powered Theater, offering a unique cinema experience where tickets are secured as NFTs, preventing black marketing and ensuring fair distribution. Users can attend virtual theater screenings and cinema watch parties with friends and family, enjoying movies in VR while maintaining audio chat functionality to interact without disturbing others.
+---
 
-Meta-AR-VR.ai is more than just a virtual environment; it's a dynamic platform that empowers users to connect, collaborate, and learn in entirely new ways. Join us in exploring the endless possibilities of the digital realm.
+## Key Features
+
+- **3D Virtual Classroom**: Simulate realistic classroom settings with interactive lessons, 3D models, and real-time collaboration.
+- **Task-Based Rewards**: Earn Aptos-based tokens by completing educational quests and assignments.
+- **NFT Minting**: Mint NFTs based on academic milestones.
+- **Token Rewards System**: Spend tokens earned in the virtual shop on educational tools or fun items.
+- **Multilingual Support**: Access educational content in your preferred language.
+- **Enhanced Learning Materials**: Teachers can upload PDFs, 3D models, and multimedia to create rich learning resources.
+- **Real-time Collaboration**: Engage in real-time video and audio conferences powered by WebRTC and Socket.io.
+
+---
 
 ## Tech Stack
-Our platform leverages a diverse array of technologies to deliver immersive experiences and seamless interactions:
 
-- **Three.js**: A lightweight 3D library used for rendering immersive 3D graphics in web browsers.
-- **React**: A JavaScript library for building user interfaces, facilitating the development of dynamic and interactive components.
-- **Langchain**: A language model technology utilized for natural language processing and dialogue generation.
-- **Python**: A versatile programming language employed for various backend and machine learning tasks.
-- **Ether.js**: A JavaScript library for interacting with the Ethereum blockchain, enabling seamless integration of blockchain features.
-- **GSAP (GreenSock Animation Platform)**: A powerful animation library for creating fluid and engaging animations in web applications.
-- **R3F (React Three Fiber)**: A React renderer for Three.js, enhancing the integration of Three.js with React applications.
-- **Gemini AI**: An artificial intelligence technology utilized for various tasks within the platform.
-- **LLM (Large Language Model)**: Advanced language model technology employed for natural language processing and conversation capabilities.
-- **RAG (Retrieval-Augmented Generation)**: An architecture for conversational AI that combines retrieval-based and generative models.
-- **Socket.io**: A JavaScript library for real-time bidirectional communication between clients and servers.
-- **Drei**: A collection of useful helpers and abstractions for Three.js, enhancing the development process.
-- **Jotai**: A state management library for React applications, simplifying the management of application state.
-- **ERC-721**: A standard for non-fungible tokens (NFTs) on the Ethereum blockchain, used for tokenizing unique assets.
-- **Hardhat**: A development environment for Ethereum smart contracts, facilitating smart contract testing and deployment.
-- **Solidity**: The programming language used for writing smart contracts on the Ethereum blockchain.
-- **Sepolia**: (Please provide more information if necessary.)
-- **Express**: A web application framework for Node.js, used for building RESTful APIs and backend services.
-- **Node.js**: A runtime environment for executing JavaScript code outside of a web browser, commonly used for server-side applications.
-- **AR.js**: A JavaScript library for building augmented reality (AR) experiences on the web.
-- **WebXR**: An API for creating virtual reality (VR) and augmented reality (AR) experiences on the web.
-- **FastAPI**: A modern web framework for building APIs with Python, known for its high performance and simplicity.
-- **0x0.st**: A file hosting service used for sharing files and resources within the platform.
-- **MongoDB**: A NoSQL database used for storing and managing application data.
-- **WebRTC**: A web technology for real-time communication between web browsers, facilitating video conferencing and peer-to-peer communication.
-- **Peer.js**: A JavaScript library for simplifying WebRTC peer-to-peer data connections.
-- **pyttsx3**: A Python library for text-to-speech conversion, enabling speech synthesis within the platform.
-- **Remix**: An online integrated development environment (IDE) for Ethereum smart contract development and testing.
-- **NFT**: Non-fungible tokens, used for representing ownership of unique digital assets within the platform.
-- **VR**: Virtual reality technology, providing immersive 3D environments and experiences.
-- **ErsatzTV** : A platform for hosting and streaming virtual theater screenings and cinema experiences.
-- **Jellyfin** : A free and open-source media server software, facilitating the hosting and streaming of media content within the platform.
+Meta-Edu-Aptos is built using a diverse range of technologies:
+- **Three.js** for 3D rendering.
+- **React** for dynamic UIs.
+- **Langchain** for real-time conversational AI.
+- **Python** for backend services.
+- **GSAP** for animations.
+- **R3F** for integrating 3D elements in React.
+- **Move** for writing smart contracts on the Aptos blockchain.
+- **Aptos** for secure blockchain transactions.
+- **Petra Wallet** for managing Aptos-based token transactions.
+- **Socket.io** and **WebRTC** for real-time communication.
+- **MongoDB** for database management.
+- **WebXR** for AR/VR experiences.
+- **pyttsx3** for text-to-speech interactions.
 
-## About the Project
-Meta-AR-VR.ai offers a diverse range of functionalities tailored to various use cases:
+---
 
-### VR Meeting Room
-The VR Meeting Room offers a professional virtual environment for conducting meetings and presentations. Users can upload PDF presentations and interact with 3D models to showcase prototypes or ideas. Real-time doubt support ensures a smooth meeting experience, while the immersive VR setting provides a sense of presence and engagement.
+## How to Run the Project
 
-### Conference Hall
-The Conference
+### Prerequisites
 
- Hall is designed to accommodate large-scale events and conferences with up to 500 attendees. It features a big screen for sharing information and presentations to all participants simultaneously. Presenters can showcase 3D models for educational purposes, and the entire hall is VR-enabled with audio chat support for seamless communication.
+Ensure that the following are installed:
+- **Node.js**: Required to run server-side JavaScript.
+- **Python 3.x**: For backend services.
+- **MongoDB**: Database for managing user data and course materials.
+- **Aptos CLI**: To deploy smart contracts.
+- **Petra Wallet**: To handle transactions on the Aptos network.
 
-### Virtual Classroom
-The Virtual Classroom transforms online education by offering an immersive 3D learning environment. Students engage with course materials, assignments, and 3D models alongside virtual avatars and educators. Furthermore, a Homework-Helping LLM-powered chatbot augments the learning process, offering personalized assistance with assignments and course materials.
+### Running the Project Locally
 
-### Blockchain-Powered Theater
-The Blockchain-Powered Theater offers a unique cinema experience where tickets are secured as NFTs, preventing black marketing and ensuring fair distribution. Users can attend virtual theater screenings and cinema watch parties with friends and family, enjoying movies in VR while maintaining audio chat functionality to interact without disturbing others.
+1. **Clone the Repository**:
+   bash
+   git clone https://github.com/yourusername/meta-edu-aptos.git
+   cd meta-edu-aptos
+   
 
-## Features
-- Virtual meeting rooms with PDF presentation support and real-time doubt resolution.
-- Conference halls for large-scale events with 3D model showcasing and AR compatibility.
-- Virtual classrooms with interactive 3D models, assignments, and real-time support.
-- Blockchain-powered theater for immersive movie experiences and watch parties.
+2. **Run Backend Services**:
+    - **Start the Socket.io server**:
+    bash
+    node socket-server.js
+    
 
-## Contributions
-We welcome contributions from developers, designers, and creators to enhance the functionality and user experience of Meta-AR-VR.ai. Please refer to our contribution guidelines for more information.
+    - **Start the Langchain service**:
+    bash
+    python app.py
+    
 
+    - **Start the main backend server**:
+    bash
+    nodemon index.js
+    
 
+3. **Run AR Server** (Note: AR functionality depends on PC compatibility):
+   bash
+   npx vite --host
+   
 
+4. **Run the Frontend**:
+   bash
+   npm run dev
+   
 
-## video
-![Youtube Walkthrough Video](https://www.youtube.com/watch?v=nwlWtFL1Gkg)
+## Blockchain Functionalities
 
-##HowToRun
- 1.Run the server.js in Socket-Server
- 2.run the app.py in Langchain-RAG-Server (`python app.py`)
- 3.Run the index.js in the Backend (`nodemon index.js`)
- 4.AR-server - do `npx vite --host` (AR depends on your PC's Compatiblity)
- 5.Now just do `npm run dev` in the main directort
- 6.For Threter you must have `ErsatzTV` setup IPTV server or A Jellyfin server.
+- Deploy smart contracts using Aptos CLI.
+- Connect Petra Wallet to manage blockchain transactions.
 
-## Contract address
-0x64bd384eA6d6B76ee7C3E1248beaA9cE3157f9dD
-https://sepolia.etherscan.io/address/0x64bd384eA6d6B76ee7C3E1248beaA9cE3157f9dD
+### Contract Information
+
+All token and NFT functionalities are deployed on the Aptos testnet. You can access the contract via the following address:
+
+- **Petra Wallet Address:** `0x2a2f75fadf5ab3bbbe9baffc87f0f6be11aece54350ac85abb68ade94404dc89`
+
+## Contribution Guidelines
+
+We welcome contributions from developers, designers, and educators. Follow these steps to contribute:
+
+1. **Fork the Repository:** Make a personal copy of the repository.
+2. **Create a Branch:** Develop your feature or fix on a separate branch.
+3. **Submit a Pull Request:** Once your feature is ready, submit a pull request for review.
+
+For more details, refer to the `CONTRIBUTING.md` file.
+
 ## License
-Meta-AR-VR.ai is licensed under the MIT License. See the LICENSE file for details.
+
+Meta-Edu-Aptos is licensed under the MIT License. For more details, see the `LICENSE` file.
 
 
